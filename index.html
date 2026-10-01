@@ -1,0 +1,1020 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Radiografía de Negocio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=Bodoni+Moda:ital,wght@1,600&display=swap">
+<style>
+:root{
+  --ink:#1F2F3C;
+  --ink-soft:#56627A;
+  --paper:#F3F5FA;
+  --paper-raised:#FFFFFF;
+  --line:#D9E0EE;
+  --accent:#8FA7D2;
+  --accent-strong:#5E76B3;
+  --sel:#7D93C6;
+  --butter:#EEE5A4;
+  --butter-ink:#9C8A2E;
+  --good:#3E7D5E;
+  --warn:#B08A2E;
+  --bad:#B4533F;
+  --shadow:rgba(31,47,60,0.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ink:#F3F5FA;
+    --ink-soft:#AEB8CC;
+    --paper:#16222C;
+    --paper-raised:#1F2F3C;
+    --line:#33465A;
+    --accent:#8FA7D2;
+    --accent-strong:#B3C3E6;
+    --sel:#7D93C6;
+    --butter:#EEE5A4;
+    --butter-ink:#EEE5A4;
+    --good:#7FC29E;
+    --warn:#E3C27A;
+    --bad:#E88D78;
+    --shadow:rgba(0,0,0,0.45);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ink:#F3F5FA;
+  --ink-soft:#AEB8CC;
+  --paper:#16222C;
+  --paper-raised:#1F2F3C;
+  --line:#33465A;
+  --accent:#8FA7D2;
+  --accent-strong:#B3C3E6;
+  --sel:#7D93C6;
+  --butter:#EEE5A4;
+  --butter-ink:#EEE5A4;
+  --good:#7FC29E;
+  --warn:#E3C27A;
+  --bad:#E88D78;
+  --shadow:rgba(0,0,0,0.45);
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Hanken Grotesk',"Segoe UI",Arial,sans-serif;
+  padding-inline:20px;
+  padding-block:28px 40px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:620px;margin:0 auto;}
+
+.brandbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:22px;
+  flex-wrap:wrap;
+}
+.logo{
+  font-family:'Hanken Grotesk',sans-serif;
+  font-weight:500;
+  font-size:26px;
+  letter-spacing:-.035em;
+  color:var(--accent-strong);
+  display:inline-flex;
+  align-items:flex-start;
+  line-height:1;
+}
+.logo .it{font-family:'Bodoni Moda',Georgia,serif;font-style:italic;font-weight:600;letter-spacing:0;margin-right:-.02em;}
+.logo svg{width:10px;height:10px;color:var(--butter-ink);margin-left:3px;}
+.step-readout{
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  font-variant-numeric:tabular-nums;
+}
+
+.scanbar{
+  height:4px;
+  background:var(--line);
+  border-radius:2px;
+  overflow:hidden;
+  margin-bottom:28px;
+}
+.scanbar-fill{
+  height:100%;
+  background:var(--accent);
+  transition:width .35s ease;
+}
+
+.card{
+  background:var(--paper-raised);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:32px;
+  box-shadow:0 14px 34px -22px var(--shadow);
+  position:relative;
+}
+@media (max-width:480px){
+  .card{padding:22px;}
+}
+
+/* portada con el papel azul de la marca */
+.card.cover{
+  background:#8FA7D2 url(img/papel-azul.jpg) center/cover;
+  border-color:transparent;
+  color:#fff;
+  overflow:hidden;
+}
+.card.cover .eyebrow{color:#fff;opacity:.9}
+.card.cover p.lede{color:#fff;opacity:.95}
+.card.cover .meta-item{color:#fff}
+.card.cover .meta-item::before{color:var(--butter)}
+.card.cover .start-btn{background:#fff;color:#5E76B3}
+.card.cover .start-btn:hover{background:var(--butter);color:#1F2F3C}
+.cover-star{position:absolute;color:var(--butter);}
+.cover-star svg{display:block;width:100%;height:100%}
+
+.eyebrow{
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--accent-strong);
+  margin:0 0 12px;
+}
+h1{
+  font-family:'Hanken Grotesk',sans-serif;
+  font-weight:300;
+  font-size:clamp(30px,5.4vw,42px);
+  line-height:1.08;
+  letter-spacing:-.025em;
+  margin:0 0 16px;
+  text-wrap:balance;
+}
+h1 b{font-weight:700;}
+.sel{
+  display:inline-block;
+  position:relative;
+  background:var(--sel);
+  color:#fff;
+  font-weight:700;
+  padding:0 .18em .04em;
+  margin:.12em .12em 0 .08em;
+}
+.sel::before,.sel::after{
+  content:"";
+  position:absolute;
+  width:9px;height:9px;border-radius:50%;
+  background:var(--sel);border:2px solid #fff;
+}
+.sel::before{left:-6px;top:-6px}
+.sel::after{right:-6px;bottom:-6px}
+h2.qtitle{
+  font-family:'Hanken Grotesk',sans-serif;
+  font-weight:600;
+  font-size:clamp(21px,3.4vw,25px);
+  line-height:1.3;
+  letter-spacing:-.015em;
+  margin:0 0 22px;
+  text-wrap:balance;
+}
+p.lede{
+  font-size:16px;
+  line-height:1.6;
+  color:var(--ink-soft);
+  margin:0 0 26px;
+  max-width:52ch;
+}
+
+.start-btn, .primary-btn{
+  font-family:'Hanken Grotesk',sans-serif;
+  font-weight:700;
+  font-size:16px;
+  background:var(--accent-strong);
+  color:#fff;
+  border:none;
+  border-radius:999px;
+  padding:14px 26px;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+:root[data-theme="dark"] .primary-btn{color:#1F2F3C}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .primary-btn{color:#1F2F3C}}
+.primary-btn:hover{background:var(--accent);color:#1F2F3C}
+.start-btn:disabled, .primary-btn:disabled{opacity:0.4;cursor:not-allowed;}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.meta-row{
+  display:flex;
+  gap:18px;
+  margin-top:22px;
+  flex-wrap:wrap;
+}
+.meta-item{
+  font-size:13px;
+  font-weight:500;
+  color:var(--ink-soft);
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.meta-item::before{content:"·";color:var(--accent);font-weight:700}
+
+.options{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-bottom:26px;
+}
+.opt{
+  border:1px solid var(--line);
+  background:var(--paper);
+  border-radius:14px;
+  padding:15px 16px;
+  cursor:pointer;
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  text-align:left;
+  font-family:'Hanken Grotesk',sans-serif;
+  font-size:15.5px;
+  line-height:1.45;
+  color:var(--ink);
+  transition:border-color .15s ease, background .15s ease;
+}
+.opt:hover{border-color:var(--accent);}
+.opt.selected{
+  border-color:var(--accent-strong);
+  background:color-mix(in srgb, var(--accent) 18%, var(--paper-raised));
+}
+.opt-letter{
+  font-size:12px;
+  font-weight:700;
+  color:var(--accent-strong);
+  border:1.5px solid var(--accent-strong);
+  border-radius:50%;
+  width:24px;
+  height:24px;
+  min-width:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:0;
+}
+.opt.selected .opt-letter{background:var(--accent-strong);color:var(--paper-raised)}
+
+.nav-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+.back-link{
+  font-size:14px;
+  font-weight:500;
+  color:var(--ink-soft);
+  background:none;
+  border:none;
+  cursor:pointer;
+  padding:8px 0;
+  font-family:inherit;
+}
+.back-link:disabled{visibility:hidden;}
+
+/* results */
+.severity-stripe{
+  height:6px;
+  border-radius:3px;
+  margin-bottom:22px;
+}
+.stage-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:6px 13px;
+  margin-bottom:16px;
+}
+.readout{
+  font-size:14px;
+  color:var(--ink-soft);
+  line-height:1.8;
+  border-top:1px dashed var(--line);
+  border-bottom:1px dashed var(--line);
+  padding:14px 0;
+  margin:22px 0;
+}
+.readout div{display:flex;justify-content:space-between;gap:12px;}
+.readout span.val{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:700}
+
+.rec-card{
+  border-radius:16px;
+  padding:22px;
+  margin:22px 0;
+  border:1px solid var(--line);
+}
+.rec-card.level-none{background:color-mix(in srgb, var(--good) 10%, var(--paper-raised));}
+.rec-card.level-guiado{background:color-mix(in srgb, var(--accent) 18%, var(--paper-raised));}
+.rec-card.level-gestionado{background:color-mix(in srgb, var(--butter) 34%, var(--paper-raised));}
+.rec-level{
+  font-size:12px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:0.12em;
+  margin:0 0 6px;
+  color:var(--ink-soft);
+}
+.rec-title{
+  font-family:'Hanken Grotesk',sans-serif;
+  font-weight:700;
+  font-size:21px;
+  letter-spacing:-.015em;
+  margin:0 0 10px;
+}
+.rec-body{font-size:15.5px;line-height:1.6;color:var(--ink-soft);margin:0;}
+.rec-price{
+  font-size:14px;
+  font-weight:700;
+  margin-top:12px;
+  color:var(--ink);
+}
+
+.tips{
+  list-style:none;
+  margin:18px 0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.tips li{
+  display:flex;
+  gap:10px;
+  font-size:15.5px;
+  line-height:1.55;
+  color:var(--ink-soft);
+}
+.tips li::before{
+  content:"";
+  flex:none;
+  width:12px;height:12px;margin-top:5px;
+  background:var(--butter-ink);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+.cta-row{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:26px;
+}
+.ghost-btn{
+  font-family:'Hanken Grotesk',sans-serif;
+  font-weight:600;
+  font-size:15px;
+  background:none;
+  border:1.5px solid var(--line);
+  color:var(--ink);
+  border-radius:999px;
+  padding:13px 22px;
+  cursor:pointer;
+}
+.ghost-btn:hover{border-color:var(--accent);}
+
+.contact-form{
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px dashed var(--line);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.field label{
+  display:block;
+  font-size:13px;
+  font-weight:600;
+  color:var(--ink-soft);
+  margin-bottom:5px;
+}
+.field input{
+  width:100%;
+  font-family:'Hanken Grotesk',sans-serif;
+  font-size:15.5px;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:var(--paper);
+  color:var(--ink);
+}
+.field input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+
+.restart{
+  display:block;
+  margin:26px auto 0;
+  font-family:inherit;
+  font-size:13px;
+  color:var(--ink-soft);
+  background:none;
+  border:none;
+  cursor:pointer;
+  text-decoration:underline;
+}
+
+.wa-note{
+  font-size:12.5px;
+  font-weight:600;
+  color:var(--warn);
+  margin-top:10px;
+}
+
+/* gate screen */
+.teaser-block{
+  position:relative;
+  margin:22px 0 26px;
+}
+.teaser-text{
+  font-size:16px;
+  line-height:1.6;
+  color:var(--ink-soft);
+  filter:blur(5px);
+  user-select:none;
+  margin:0;
+}
+.teaser-lock{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--accent-strong);
+}
+.teaser-lock svg{width:15px;height:15px}
+.gate-form{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin:22px 0 6px;
+}
+.gate-hint{
+  font-size:13.5px;
+  color:var(--ink-soft);
+  margin:-4px 0 4px;
+}
+.skip-link{
+  display:block;
+  text-align:center;
+  margin-top:16px;
+  font-family:inherit;
+  font-size:13px;
+  color:var(--ink-soft);
+  background:none;
+  border:none;
+  cursor:pointer;
+  text-decoration:underline;
+}
+
+/* results CTA hierarchy */
+.cta-stack{margin-top:26px;display:flex;flex-direction:column;gap:10px;}
+.decline-link{
+  align-self:center;
+  margin-top:6px;
+  font-family:inherit;
+  font-size:13px;
+  color:var(--ink-soft);
+  background:none;
+  border:none;
+  cursor:pointer;
+  text-decoration:underline;
+  opacity:0.8;
+}
+.foot{margin-top:22px;text-align:center;font-size:12.5px;color:var(--ink-soft)}
+
+[hidden]{display:none!important;}
+
+@media (prefers-reduced-motion: reduce){
+  .scanbar-fill{transition:none;}
+}
+</style>
+
+<div class="wrap">
+  <div class="brandbar">
+    <div class="logo" aria-label="merkha"><span class="it">m</span>erkha<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div>
+    <div class="step-readout" id="stepReadout"></div>
+  </div>
+  <div class="scanbar"><div class="scanbar-fill" id="scanFill" style="width:0%"></div></div>
+
+  <!-- INTRO -->
+  <div class="card cover" id="screen-intro">
+    <span class="cover-star" style="width:22px;height:22px;top:22px;right:26px"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg></span>
+    <span class="cover-star" style="width:14px;height:14px;top:58px;right:62px"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg></span>
+    <p class="eyebrow">Diagnóstico gratuito · 2 minutos</p>
+    <h1>Radiografía de <b>Negocio</b></h1>
+    <p class="lede">7 preguntas sobre cómo está tu presencia en redes hoy. Al final sabes exactamente qué le falta a tu negocio para conseguir clientes desde ahí, y si eso te conviene resolverlo tú o con ayuda. Tú decides al final si quieres que te contactemos, aquí nadie te va a perseguir.</p>
+    <button class="start-btn" onclick="startQuiz()">Empezar diagnóstico →</button>
+    <div class="meta-row">
+      <div class="meta-item">Sin registro</div>
+      <div class="meta-item">Resultado inmediato</div>
+      <div class="meta-item">Tú decides si te contactamos</div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="card" id="screen-quiz" hidden>
+    <p class="eyebrow" id="quizEyebrow"></p>
+    <h2 class="qtitle" id="qtitle"></h2>
+    <div class="options" id="qoptions"></div>
+    <div class="nav-row">
+      <button class="back-link" id="backBtn" onclick="goBack()">← Anterior</button>
+      <button class="primary-btn" id="nextBtn" disabled onclick="goNext()">Siguiente →</button>
+    </div>
+  </div>
+
+  <!-- GATE (teaser + captura ligera antes de revelar el diagnóstico completo) -->
+  <div class="card" id="screen-gate" hidden>
+    <div class="severity-stripe" id="gateStripe"></div>
+    <p class="stage-pill" id="gateStagePill"></p>
+    <h1>Tu radiografía <span class="sel">ya está lista</span></h1>
+    <div class="teaser-block">
+      <p class="teaser-text" id="gateTeaserText"></p>
+      <div class="teaser-lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Se desbloquea abajo</div>
+    </div>
+    <div class="gate-form">
+      <div class="field">
+        <label for="gName">Tu nombre</label>
+        <input id="gName" type="text" placeholder="Ej. Roberto Salinas">
+      </div>
+      <div class="field">
+        <label for="gBiz">Tu negocio y a qué se dedica</label>
+        <input id="gBiz" type="text" placeholder="Ej. Taller Salinas, mecánica automotriz">
+      </div>
+      <div class="field">
+        <label for="gWhatsapp">Tu WhatsApp</label>
+        <input id="gWhatsapp" type="text" placeholder="Ej. 55 1234 5678">
+      </div>
+      <p class="gate-hint">Es para personalizar tu resultado y para que, si quieres, puedas mandarlo por WhatsApp con un clic. No te contactamos sin que tú des enviar.</p>
+      <button class="primary-btn" onclick="revealResults(true)">Ver mi radiografía completa →</button>
+    </div>
+    <button class="skip-link" onclick="revealResults(false)">Prefiero verla sin dejar mis datos</button>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="card" id="screen-results" hidden>
+    <div class="severity-stripe" id="severityStripe"></div>
+    <p class="stage-pill" id="stagePill"></p>
+    <h1 id="resultHeadline"></h1>
+    <p class="lede" id="resultDiagnosis"></p>
+
+    <div class="readout" id="readout"></div>
+
+    <div class="rec-card" id="recCard">
+      <p class="rec-level" id="recLevel"></p>
+      <h3 class="rec-title" id="recTitle"></h3>
+      <p class="rec-body" id="recBody"></p>
+      <p class="rec-price" id="recPrice"></p>
+    </div>
+
+    <ul class="tips" id="tipsList" hidden></ul>
+
+    <div class="cta-stack" id="ctaRow">
+      <button class="primary-btn" id="yesBtn" onclick="openContactForm('ya')">Sí, quiero resolver esto ya</button>
+      <button class="ghost-btn" id="noBtn" onclick="openContactForm('luego')">Quiero pensarlo, mándame mi diagnóstico por WhatsApp</button>
+      <button class="decline-link" onclick="declineContact()">Cerrar sin enviar nada</button>
+    </div>
+
+    <div class="contact-form" id="contactForm" hidden>
+      <div class="field">
+        <label for="fName">Tu nombre</label>
+        <input id="fName" type="text" placeholder="Ej. Roberto Salinas">
+      </div>
+      <div class="field">
+        <label for="fBiz">Nombre de tu negocio</label>
+        <input id="fBiz" type="text" placeholder="Ej. Taller Salinas">
+      </div>
+      <div class="field">
+        <label for="fContact">Tu WhatsApp o Instagram</label>
+        <input id="fContact" type="text" placeholder="Ej. 55 1234 5678 o @tallersalinas">
+      </div>
+      <button class="primary-btn" id="sendWaBtn" onclick="sendWhatsApp()">Enviar por WhatsApp →</button>
+      <p class="wa-note" id="waNote" hidden>Número de WhatsApp de Merkha pendiente de configurar (placeholder de demo).</p>
+    </div>
+
+    <div id="declineMsg" hidden>
+      <p class="lede" style="margin-top:18px;">Sin problema. Guarda esta pantalla o toma una captura, ahí está tu diagnóstico completo. Si más adelante cambias de opinión, este mismo test sigue disponible.</p>
+    </div>
+
+    <button class="restart" onclick="resetQuiz()">Volver a hacer el diagnóstico</button>
+  </div>
+  <p class="foot">Hecho por Merkha · @merkhamedia</p>
+</div>
+
+<script>
+// ---- CONFIG (placeholder, pendiente de dato real) ----
+const MERKHA_WHATSAPP_NUMBER = "524461447931"; // WhatsApp de Merkha: +52 446 144 79 31
+
+const STAGES = {
+  conexion: {label:"Conexión", short:"te ven pero no te distinguen"},
+  educacion: {label:"Educación", short:"dudan si sabes resolver su problema"},
+  conversion: {label:"Conversión", short:"se interesan pero no dan el siguiente paso"},
+  transformacion: {label:"Transformación", short:"no ven pruebas de que ya ayudaste a alguien"}
+};
+
+const QUESTIONS = [
+  {
+    stage:"conexion",
+    eyebrow:"Pregunta 1 de 7 · Primera impresión",
+    title:"Si un cliente nuevo llega hoy a tu perfil por primera vez, ¿qué se va a encontrar?",
+    options:[
+      {t:"Una cuenta que casi no se actualiza o que no dice mucho de quiénes somos.", v:0},
+      {t:"Contenido, pero se parece al de cualquier otro negocio del mismo giro.", v:1},
+      {t:"Ya se nota nuestro estilo y lo que nos hace distintos, aunque no siempre.", v:2},
+      {t:"Cualquiera que entra sabe exactamente quiénes somos y por qué elegirnos.", v:3}
+    ]
+  },
+  {
+    stage:"educacion",
+    eyebrow:"Pregunta 2 de 7 · Confianza",
+    title:"Cuando alguien duda si contratarte o no, ¿tu contenido responde esa duda?",
+    options:[
+      {t:"No, casi no explicamos cómo resolvemos el problema del cliente.", v:0},
+      {t:"Publicamos tips o consejos, pero sin conectarlos con lo que vendemos.", v:1},
+      {t:"A veces mostramos cómo trabajamos, pero no es constante.", v:2},
+      {t:"Constantemente mostramos cómo ayudamos y por qué sabemos del tema.", v:3}
+    ]
+  },
+  {
+    stage:"conversion",
+    eyebrow:"Pregunta 3 de 7 · El momento del contacto",
+    title:"Cuando alguien te escribe interesado, ¿qué pasa después?",
+    options:[
+      {t:"Muchas veces ni siquiera contestamos a tiempo.", v:0},
+      {t:"Contestamos, pero no hay un siguiente paso claro (agendar, cotizar, comprar).", v:1},
+      {t:"Tenemos un proceso, pero se nos escapan varios en el camino.", v:2},
+      {t:"Tenemos un proceso claro y la mayoría no se nos va.", v:3}
+    ]
+  },
+  {
+    stage:"transformacion",
+    eyebrow:"Pregunta 4 de 7 · Prueba real",
+    title:"¿Qué tanto se nota en tus redes que ya tienes clientes contentos?",
+    options:[
+      {t:"Nada, no mostramos resultados ni testimonios.", v:0},
+      {t:"Tenemos casos buenos, pero no los hemos publicado.", v:1},
+      {t:"Publicamos alguno de vez en cuando.", v:2},
+      {t:"Es parte constante de lo que publicamos.", v:3}
+    ]
+  },
+  {
+    stage:null,
+    key:"tiempo",
+    eyebrow:"Pregunta 5 de 7 · Realidad operativa",
+    title:"¿Cuánto tiempo le dedican de verdad a crear y publicar contenido al mes?",
+    options:[
+      {t:"Casi nada, se hace cuando se puede.", v:"a"},
+      {t:"Unas horas sueltas, sin plan.", v:"b"},
+      {t:"Tenemos tiempo pero no sabemos bien qué publicar.", v:"c"},
+      {t:"Tenemos tiempo y plan, solo falta quien ejecute.", v:"d"}
+    ]
+  },
+  {
+    stage:null,
+    key:"involucramiento",
+    eyebrow:"Pregunta 6 de 7 · Cómo te quieres involucrar",
+    title:"¿Cómo te gustaría estar involucrado en tus redes de aquí en adelante?",
+    options:[
+      {t:"Quiero delegarlo todo, no tengo tiempo ni ganas de meterme en el día a día.", v:"a"},
+      {t:"Quiero aportar lo mío (grabar, dar ideas) pero que alguien más lo organice y publique.", v:"b"},
+      {t:"Quiero aprender a hacerlo yo mismo, con guía.", v:"c"},
+      {t:"Prefiero hacerlo todo yo, solo quería un diagnóstico honesto.", v:"d"}
+    ]
+  },
+  {
+    stage:null,
+    key:"presupuesto",
+    eyebrow:"Pregunta 7 de 7 · Presupuesto",
+    title:"¿Cuánto presupuesto mensual tienen disponible para esto, sin contar pauta publicitaria?",
+    options:[
+      {t:"Menos de $5,000 MXN.", v:"a"},
+      {t:"Entre $5,000 y $10,000 MXN.", v:"b"},
+      {t:"Entre $10,000 y $15,000 MXN.", v:"c"},
+      {t:"Más de $15,000 MXN.", v:"d"}
+    ]
+  }
+];
+
+let current = 0;
+let answers = new Array(QUESTIONS.length).fill(null);
+let gateData = {name:"", biz:"", whatsapp:""};
+let contactMode = "ya";
+
+function startQuiz(){
+  document.getElementById("screen-intro").hidden = true;
+  document.getElementById("screen-quiz").hidden = false;
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const q = QUESTIONS[current];
+  document.getElementById("quizEyebrow").textContent = q.eyebrow;
+  document.getElementById("qtitle").textContent = q.title;
+  const optWrap = document.getElementById("qoptions");
+  optWrap.innerHTML = "";
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement("button");
+    btn.className = "opt" + (answers[current] === i ? " selected" : "");
+    btn.type = "button";
+    btn.innerHTML = '<span class="opt-letter">' + String.fromCharCode(65+i) + '</span><span>' + opt.t + '</span>';
+    btn.onclick = () => selectOption(i);
+    optWrap.appendChild(btn);
+  });
+  document.getElementById("backBtn").disabled = current === 0;
+  document.getElementById("nextBtn").disabled = answers[current] === null;
+  document.getElementById("nextBtn").textContent = current === QUESTIONS.length - 1 ? "Ver mi diagnóstico →" : "Siguiente →";
+  updateProgress();
+}
+
+function selectOption(i){
+  answers[current] = i;
+  renderQuestion();
+}
+
+function updateProgress(){
+  const pct = Math.round(((current) / QUESTIONS.length) * 100);
+  document.getElementById("scanFill").style.width = pct + "%";
+  document.getElementById("stepReadout").textContent = "PASO " + (current+1) + "/" + QUESTIONS.length;
+}
+
+function goNext(){
+  if (answers[current] === null) return;
+  if (current === QUESTIONS.length - 1){
+    document.getElementById("scanFill").style.width = "100%";
+    showGate();
+    return;
+  }
+  current++;
+  renderQuestion();
+}
+
+function goBack(){
+  if (current === 0) return;
+  current--;
+  renderQuestion();
+}
+
+function resetQuiz(){
+  current = 0;
+  answers = new Array(QUESTIONS.length).fill(null);
+  gateData = {name:"", biz:"", whatsapp:""};
+  contactMode = "ya";
+  document.getElementById("gName").value = "";
+  document.getElementById("gBiz").value = "";
+  document.getElementById("gWhatsapp").value = "";
+  document.getElementById("screen-gate").hidden = true;
+  document.getElementById("screen-results").hidden = true;
+  document.getElementById("screen-intro").hidden = false;
+  document.getElementById("contactForm").hidden = true;
+  document.getElementById("declineMsg").hidden = true;
+  document.getElementById("ctaRow").hidden = false;
+  document.getElementById("tipsList").hidden = true;
+  document.getElementById("scanFill").style.width = "0%";
+  document.getElementById("stepReadout").textContent = "";
+}
+
+function computeDiagnosis(){
+  const stageScores = {conexion:0, educacion:0, conversion:0, transformacion:0};
+  QUESTIONS.forEach((q, i) => {
+    if (q.stage){
+      stageScores[q.stage] = q.options[answers[i]].v;
+    }
+  });
+
+  const tiempo = QUESTIONS[4].options[answers[4]].v;
+  const involucramiento = QUESTIONS[5].options[answers[5]].v;
+  const presupuesto = QUESTIONS[6].options[answers[6]].v;
+
+  const stageOrder = ["conexion","educacion","conversion","transformacion"];
+  let bottleneck = stageOrder[0];
+  stageOrder.forEach(s => { if (stageScores[s] < stageScores[bottleneck]) bottleneck = s; });
+  const totalScore = stageOrder.reduce((a,s)=>a+stageScores[s],0); // 0-12
+
+  const rec = recommend(involucramiento, presupuesto, tiempo);
+  return {bottleneck, stageScores, totalScore, rec, stageOrder};
+}
+
+function severityColor(totalScore){
+  if (totalScore <= 4) return "var(--bad)";
+  if (totalScore <= 8) return "var(--warn)";
+  return "var(--good)";
+}
+
+function showGate(){
+  document.getElementById("screen-quiz").hidden = true;
+  document.getElementById("screen-gate").hidden = false;
+  document.getElementById("stepReadout").textContent = "DIAGNÓSTICO LISTO";
+
+  const result = computeDiagnosis();
+  window._lastResult = result;
+
+  document.getElementById("gateStripe").style.background = severityColor(result.totalScore);
+  document.getElementById("gateStagePill").textContent = "Cuello de botella: " + STAGES[result.bottleneck].label;
+  document.getElementById("gateTeaserText").textContent = diagnosisCopy(result.bottleneck, result.totalScore);
+}
+
+function revealResults(usedGateData){
+  if (usedGateData){
+    gateData.name = document.getElementById("gName").value.trim();
+    gateData.biz = document.getElementById("gBiz").value.trim();
+    gateData.whatsapp = document.getElementById("gWhatsapp").value.trim();
+  }
+  document.getElementById("screen-gate").hidden = true;
+  document.getElementById("screen-results").hidden = false;
+  document.getElementById("stepReadout").textContent = "DIAGNÓSTICO";
+  renderResults();
+}
+
+function renderResults(){
+  const r = window._lastResult;
+  const bottleneck = r.bottleneck;
+  const stageScores = r.stageScores;
+  const stageOrder = r.stageOrder;
+
+  document.getElementById("stagePill").textContent = "Cuello de botella: " + STAGES[bottleneck].label;
+  const bizLabel = gateData.biz ? gateData.biz.split(",")[0] : "";
+  document.getElementById("resultHeadline").textContent = bizLabel
+    ? "A " + bizLabel + " le falta " + STAGES[bottleneck].label.toLowerCase()
+    : "A tus redes les falta " + STAGES[bottleneck].label.toLowerCase();
+  document.getElementById("resultDiagnosis").textContent = diagnosisCopy(bottleneck, r.totalScore);
+
+  document.getElementById("severityStripe").style.background = severityColor(r.totalScore);
+
+  const readout = document.getElementById("readout");
+  readout.innerHTML = stageOrder.map(s =>
+    '<div><span>' + STAGES[s].label + '</span><span class="val">' + stageScores[s] + ' / 3</span></div>'
+  ).join("");
+
+  const rec = r.rec;
+  const recCard = document.getElementById("recCard");
+  recCard.className = "rec-card level-" + rec.level;
+  document.getElementById("recLevel").textContent = rec.levelLabel;
+  document.getElementById("recTitle").textContent = rec.title;
+  document.getElementById("recBody").textContent = rec.body;
+  document.getElementById("recPrice").textContent = rec.price;
+
+  const tipsList = document.getElementById("tipsList");
+  if (rec.level === "none"){
+    tipsList.hidden = false;
+    tipsList.innerHTML = tipsFor(bottleneck).map(t => "<li>"+t+"</li>").join("");
+  } else {
+    tipsList.hidden = true;
+  }
+
+  document.getElementById("ctaRow").hidden = false;
+  document.getElementById("contactForm").hidden = true;
+  document.getElementById("declineMsg").hidden = true;
+}
+
+function diagnosisCopy(bottleneck, totalScore){
+  const map = {
+    conexion: "La gente pasa por tu perfil y no se queda, porque no alcanza a entender quién eres ni por qué tú y no otro negocio parecido. Antes de pensar en vender más, hace falta que se note tu identidad.",
+    educacion: "Publicas, pero no estás resolviendo la duda real de quien todavía no te conoce: ¿de verdad sabes lo que haces? Ahí es donde se pierde la confianza antes de que alguien te escriba.",
+    conversion: "Estás generando interés, la gente llega hasta ti, pero se te va justo antes de convertirse en cliente porque no hay un siguiente paso claro o nadie contesta a tiempo.",
+    transformacion: "Tienes clientes que ya te recomendarían, pero eso no se ve en ningún lado. Sin esa prueba, cada prospecto nuevo tiene que confiar a ciegas."
+  };
+  return map[bottleneck];
+}
+
+function tipsFor(bottleneck){
+  const map = {
+    conexion: [
+      "Escribe en tu biografía, en una frase, a quién ayudas y con qué.",
+      "Sube una historia esta semana contando por qué empezaste el negocio.",
+      "Revisa tus últimas 9 publicaciones: si alguien más las pudo haber hecho, cámbiales el enfoque."
+    ],
+    educacion: [
+      "Elige tu pregunta más repetida en mensajes y contéstala en un video corto.",
+      "Muestra el proceso de cómo resuelves un caso típico, paso por paso.",
+      "Deja de publicar solo tips genéricos, amárralos siempre a un caso real tuyo."
+    ],
+    conversion: [
+      "Pon un solo llamado a la acción claro en cada publicación, no varios.",
+      "Define quién contesta los mensajes y en cuánto tiempo máximo.",
+      "Ten una respuesta lista para cuando alguien pregunte precio o disponibilidad."
+    ],
+    transformacion: [
+      "Pide a tu último cliente contento un audio o mensaje de dos líneas y publícalo.",
+      "Cuenta el antes y después de un caso real, aunque sea sencillo.",
+      "Guarda cada buen comentario que te dejen y conviértelo en contenido."
+    ]
+  };
+  return map[bottleneck];
+}
+
+function recommend(involucramiento, presupuesto, tiempo){
+  const desiredMap = {a:"gestionado", b:"guiado", c:"guiado", d:"none"};
+  let level = desiredMap[involucramiento];
+
+  if (level === "gestionado" && presupuesto !== "d"){
+    level = (presupuesto === "c") ? "guiado" : "none";
+  }
+  if (level === "guiado" && !(presupuesto === "c" || presupuesto === "d")){
+    level = "none";
+  }
+
+  const content = {
+    gestionado: {
+      levelLabel:"Recomendación · Gestionado",
+      title:"Te conviene que Merkha maneje esto por ti",
+      body:"Dijiste que no quieres meterte en el día a día. Con Gestionado, Merkha publica, responde mensajes y te entrega los leads listos para cerrar.",
+      price:"Desde $15,000 MXN/mes · ajusta según tu diagnóstico real."
+    },
+    guiado: {
+      levelLabel:"Recomendación · Guiado",
+      title:"Guiado es tu mejor punto de partida",
+      body:"Quieres seguir involucrado, pero con estructura y guía real detrás. En Guiado tú grabas y respondes, y Merkha organiza, guioniza y te dice exactamente qué publicar cada semana.",
+      price:"Desde $10,500 MXN/mes · ajusta según tu diagnóstico real."
+    },
+    none: {
+      levelLabel:"Recomendación",
+      title:"Por ahora no necesitas un Community Manager",
+      body:tiempo === "a"
+        ? "Dijiste que prefieres hacerlo tú, aunque también marcaste que casi no tienes tiempo real para esto. Aquí van tus recomendaciones de todas formas. Si en unas semanas el tiempo sigue sin aparecer, Guiado te da estructura sin quitarte el control."
+        : "Con lo que cuentas hoy, esto lo puedes resolver tú mismo. Aquí van 3 acciones concretas para tu cuello de botella.",
+      price:""
+    }
+  };
+
+  const c = content[level];
+  return {level, levelLabel:c.levelLabel, title:c.title, body:c.body, price:c.price};
+}
+
+function openContactForm(mode){
+  contactMode = mode;
+  document.getElementById("ctaRow").hidden = true;
+  document.getElementById("contactForm").hidden = false;
+
+  document.getElementById("fName").value = gateData.name || "";
+  document.getElementById("fBiz").value = gateData.biz || "";
+  document.getElementById("fContact").value = gateData.whatsapp || "";
+
+  document.getElementById("sendWaBtn").textContent = mode === "ya"
+    ? "Enviar por WhatsApp →"
+    : "Mandarme mi diagnóstico por WhatsApp →";
+
+  const isPlaceholder = MERKHA_WHATSAPP_NUMBER.indexOf("X") !== -1;
+  document.getElementById("waNote").hidden = !isPlaceholder;
+}
+
+function declineContact(){
+  document.getElementById("ctaRow").hidden = true;
+  document.getElementById("declineMsg").hidden = false;
+}
+
+function sendWhatsApp(){
+  const name = document.getElementById("fName").value.trim() || "(sin nombre)";
+  const biz = document.getElementById("fBiz").value.trim() || "(sin negocio)";
+  const contact = document.getElementById("fContact").value.trim() || "(sin dato de contacto)";
+  const r = window._lastResult;
+  const stageLabel = STAGES[r.bottleneck].label;
+
+  const opening = contactMode === "ya"
+    ? "Hola, hice la Radiografía de Negocio y quiero resolver esto ya. Contáctenme."
+    : "Hola, hice la Radiografía de Negocio. Todavía no busco que me contacten, quería mi diagnóstico por escrito para pensarlo.";
+
+  const lines = [
+    opening,
+    "",
+    "Nombre: " + name,
+    "Negocio: " + biz,
+    "Contacto: " + contact,
+    "",
+    "Cuello de botella detectado: " + stageLabel,
+    "Puntaje por etapa: Conexión " + r.stageScores.conexion + "/3, Educación " + r.stageScores.educacion + "/3, Conversión " + r.stageScores.conversion + "/3, Transformación " + r.stageScores.transformacion + "/3",
+    "Recomendación: " + r.rec.title
+  ];
+  const text = encodeURIComponent(lines.join("\n"));
+  const url = "https://wa.me/" + MERKHA_WHATSAPP_NUMBER.replace(/\D/g,"") + "?text=" + text;
+  const win = window.open(url, "_blank");
+  if (!win) window.location.href = url;
+}
+</script>
+
+</html>
