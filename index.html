@@ -1,1020 +1,657 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Radiografía de Negocio</title>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Portafolio Merkha</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=Bodoni+Moda:ital,wght@1,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,600&family=Hanken+Grotesk:wght@300;400;500;600;700;800&display=swap">
 <style>
+/* Layout: pensado primero para celular. Papel azul arriba y abajo, papel blanco en medio.
+   Orden: sistema Clientes Sin Perseguir → casos donde se aplicó → propuestas → cómo trabajamos → cotizar.
+   Branding "Redes sep 2026", un solo look a propósito. */
 :root{
-  --ink:#1F2F3C;
-  --ink-soft:#56627A;
-  --paper:#F3F5FA;
-  --paper-raised:#FFFFFF;
-  --line:#D9E0EE;
-  --accent:#8FA7D2;
-  --accent-strong:#5E76B3;
-  --sel:#7D93C6;
-  --butter:#EEE5A4;
-  --butter-ink:#9C8A2E;
-  --good:#3E7D5E;
-  --warn:#B08A2E;
-  --bad:#B4533F;
-  --shadow:rgba(31,47,60,0.14);
+  --peri:#8FA7D2; --peri-ink:#5E76B3; --peri-soft:#7D93C6;
+  --butter:#EEE5A4; --butter-dark:#C9B75A; --blush:#F4E4DC;
+  --night:#1F2F3C; --paper:#F7F8FA; --white:#FFFFFF;
+  --muted:#56657a; --line:#dde3ee;
+  --f-body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --f-logo:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  color-scheme:light;
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    color-scheme:dark;
-    --ink:#F3F5FA;
-    --ink-soft:#AEB8CC;
-    --paper:#16222C;
-    --paper-raised:#1F2F3C;
-    --line:#33465A;
-    --accent:#8FA7D2;
-    --accent-strong:#B3C3E6;
-    --sel:#7D93C6;
-    --butter:#EEE5A4;
-    --butter-ink:#EEE5A4;
-    --good:#7FC29E;
-    --warn:#E3C27A;
-    --bad:#E88D78;
-    --shadow:rgba(0,0,0,0.45);
-  }
-}
-:root[data-theme="dark"]{
-  color-scheme:dark;
-  --ink:#F3F5FA;
-  --ink-soft:#AEB8CC;
-  --paper:#16222C;
-  --paper-raised:#1F2F3C;
-  --line:#33465A;
-  --accent:#8FA7D2;
-  --accent-strong:#B3C3E6;
-  --sel:#7D93C6;
-  --butter:#EEE5A4;
-  --butter-ink:#EEE5A4;
-  --good:#7FC29E;
-  --warn:#E3C27A;
-  --bad:#E88D78;
-  --shadow:rgba(0,0,0,0.45);
-}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--paper);color:var(--night);font-family:var(--f-body);font-weight:300;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:76px}
+b,strong{font-weight:700}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--peri-ink);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:18px}
+.eyebrow{font-weight:600;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.12;letter-spacing:-.02em}
+h2{font-size:clamp(1.75rem,6.5vw,2.8rem);font-weight:300}
+h2 b{font-weight:700}
+p{margin:0}
+.logo{font-weight:500;letter-spacing:-.035em;line-height:1}
+.logo i{font-family:var(--f-logo);font-weight:600;font-style:italic}
 
-*{box-sizing:border-box;}
-body{
-  margin:0;
-  background:var(--paper);
-  color:var(--ink);
-  font-family:'Hanken Grotesk',"Segoe UI",Arial,sans-serif;
-  padding-inline:20px;
-  padding-block:28px 40px;
-  -webkit-font-smoothing:antialiased;
-}
-.wrap{max-width:620px;margin:0 auto;}
+/* barra superior con secciones deslizables */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(247,248,250,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:14px;height:54px}
+.bar .logo{font-size:1.35rem;color:var(--peri-ink);flex:none;text-decoration:none}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;min-width:0;flex:1;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+.chips::-webkit-scrollbar{display:none}
+.chips a{flex:none;text-decoration:none;font-size:.85rem;font-weight:500;padding:.38em .85em;border-radius:999px;color:var(--night);border:1px solid var(--line);background:var(--white)}
+.chips a:hover{border-color:var(--peri)}
 
-.brandbar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin-bottom:22px;
-  flex-wrap:wrap;
-}
-.logo{
-  font-family:'Hanken Grotesk',sans-serif;
-  font-weight:500;
-  font-size:26px;
-  letter-spacing:-.035em;
-  color:var(--accent-strong);
-  display:inline-flex;
-  align-items:flex-start;
-  line-height:1;
-}
-.logo .it{font-family:'Bodoni Moda',Georgia,serif;font-style:italic;font-weight:600;letter-spacing:0;margin-right:-.02em;}
-.logo svg{width:10px;height:10px;color:var(--butter-ink);margin-left:3px;}
-.step-readout{
-  font-size:12px;
-  font-weight:600;
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  color:var(--ink-soft);
-  font-variant-numeric:tabular-nums;
-}
+/* ─── HERO ─── */
+.hero{position:relative;overflow:hidden;background:var(--peri) url("img/papel-azul.jpg") center/cover;color:var(--white);padding-block:44px 52px}
+.hero-body{display:grid;gap:20px;max-width:760px;position:relative;z-index:1}
+.hero h1{font-size:clamp(2.6rem,12vw,5.4rem);font-weight:700;letter-spacing:-.035em;line-height:1}
+.hero h1 span{display:block;font-weight:300}
+.hero .sub{font-size:clamp(1.08rem,4.2vw,1.35rem);max-width:34ch}
+.hero .who{font-size:.97rem;opacity:.95;max-width:52ch}
+.sel{display:inline-flex;align-items:center;justify-content:center;gap:10px;position:relative;background:var(--peri-soft);color:var(--white);font-weight:700;padding:.75em 1.2em;text-decoration:none;border-radius:2px;min-height:44px}
+.sel::before,.sel::after{content:"";position:absolute;width:7px;height:7px;background:var(--white);border:1.5px solid var(--peri-soft)}
+.sel::before{top:-4px;left:-4px}.sel::after{bottom:-4px;right:-4px}
+.sel:hover{background:var(--peri-ink)}
+.sel:hover::before,.sel:hover::after{border-color:var(--peri-ink)}
+.btns{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.ghost{color:var(--white);font-weight:500;text-underline-offset:5px}
+.star{position:absolute;pointer-events:none}
+.s1{right:6%;top:9%}
+.s2{right:16%;bottom:9%}
 
-.scanbar{
-  height:4px;
-  background:var(--line);
-  border-radius:2px;
-  overflow:hidden;
-  margin-bottom:28px;
-}
-.scanbar-fill{
-  height:100%;
-  background:var(--accent);
-  transition:width .35s ease;
-}
+/* ─── SECCIONES ─── */
+section{padding-block:56px}
+.head{display:grid;gap:12px;max-width:680px;margin-bottom:30px}
+.head .eyebrow{color:var(--peri-ink)}
+.head p{color:var(--muted);font-size:1rem}
 
-.card{
-  background:var(--paper-raised);
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:32px;
-  box-shadow:0 14px 34px -22px var(--shadow);
-  position:relative;
-}
-@media (max-width:480px){
-  .card{padding:22px;}
-}
+/* comparación */
+.vs{display:grid;gap:12px}
+.vs > div{padding:20px;border-radius:4px;display:grid;gap:10px;align-content:start}
+.vs .old{background:var(--white);border:1px solid var(--line)}
+.vs .old .eyebrow{color:var(--muted)}
+.vs .new{background:var(--peri-ink);color:var(--white)}
+.vs .new .eyebrow{color:var(--butter)}
+.vs ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.vs li{display:grid;grid-template-columns:16px 1fr;gap:8px;font-size:.98rem}
+.vs .old li{color:var(--muted)}
+.vs .old li::before{content:"×";color:var(--muted)}
+.vs .new li{font-weight:500}
+.vs .new li::before{content:"";width:7px;height:7px;margin-top:.6em;border-radius:50%;background:var(--butter)}
 
-/* portada con el papel azul de la marca */
-.card.cover{
-  background:#8FA7D2 url(img/papel-azul.jpg) center/cover;
-  border-color:transparent;
-  color:#fff;
-  overflow:hidden;
-}
-.card.cover .eyebrow{color:#fff;opacity:.9}
-.card.cover p.lede{color:#fff;opacity:.95}
-.card.cover .meta-item{color:#fff}
-.card.cover .meta-item::before{color:var(--butter)}
-.card.cover .start-btn{background:#fff;color:#5E76B3}
-.card.cover .start-btn:hover{background:var(--butter);color:#1F2F3C}
-.cover-star{position:absolute;color:var(--butter);}
-.cover-star svg{display:block;width:100%;height:100%}
+/* resultado */
+.outcomes{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.outcome{background:var(--white);padding:18px 20px;display:grid;gap:4px}
+.outcome b{font-size:1.08rem}
+.outcome span{font-size:.94rem;color:var(--muted)}
 
-.eyebrow{
-  font-size:12px;
-  font-weight:600;
-  letter-spacing:0.14em;
-  text-transform:uppercase;
-  color:var(--accent-strong);
-  margin:0 0 12px;
-}
-h1{
-  font-family:'Hanken Grotesk',sans-serif;
-  font-weight:300;
-  font-size:clamp(30px,5.4vw,42px);
-  line-height:1.08;
-  letter-spacing:-.025em;
-  margin:0 0 16px;
-  text-wrap:balance;
-}
-h1 b{font-weight:700;}
-.sel{
-  display:inline-block;
-  position:relative;
-  background:var(--sel);
-  color:#fff;
-  font-weight:700;
-  padding:0 .18em .04em;
-  margin:.12em .12em 0 .08em;
-}
-.sel::before,.sel::after{
-  content:"";
-  position:absolute;
-  width:9px;height:9px;border-radius:50%;
-  background:var(--sel);border:2px solid #fff;
-}
-.sel::before{left:-6px;top:-6px}
-.sel::after{right:-6px;bottom:-6px}
-h2.qtitle{
-  font-family:'Hanken Grotesk',sans-serif;
-  font-weight:600;
-  font-size:clamp(21px,3.4vw,25px);
-  line-height:1.3;
-  letter-spacing:-.015em;
-  margin:0 0 22px;
-  text-wrap:balance;
-}
-p.lede{
-  font-size:16px;
-  line-height:1.6;
-  color:var(--ink-soft);
-  margin:0 0 26px;
-  max-width:52ch;
-}
+/* ciclo */
+.cycle{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.cycle li{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center;padding:10px 0;position:relative}
+.cycle li:not(:last-child)::after{content:"";position:absolute;left:19px;top:48px;bottom:-8px;width:1.5px;background:var(--peri)}
+.cycle .n{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--white);border:1.5px solid var(--peri);font-weight:700;color:var(--peri-ink);font-size:.9rem;font-variant-numeric:tabular-nums}
+.cycle li.on .n{background:var(--peri-soft);border-color:var(--peri-soft);color:var(--white)}
+.cycle b{font-size:1.08rem;display:block;line-height:1.2}
+.cycle small{font-size:.78rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.loop{margin-top:10px;font-size:.93rem;color:var(--muted);padding-left:52px}
+.stages{display:grid;gap:12px}
+.stage{background:var(--white);border:1px solid var(--line);border-radius:4px;padding:20px;display:grid;gap:8px;align-content:start}
+.stage .eyebrow{color:var(--butter-dark)}
+.stage h3{font-size:1.25rem;font-weight:700}
+.stage p{font-size:.94rem;color:var(--muted)}
+.stage ul{margin:4px 0 0;padding:0 0 0 1.1em;display:grid;gap:4px;font-size:.93rem}
 
-.start-btn, .primary-btn{
-  font-family:'Hanken Grotesk',sans-serif;
-  font-weight:700;
-  font-size:16px;
-  background:var(--accent-strong);
-  color:#fff;
-  border:none;
-  border-radius:999px;
-  padding:14px 26px;
-  cursor:pointer;
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-}
-:root[data-theme="dark"] .primary-btn{color:#1F2F3C}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .primary-btn{color:#1F2F3C}}
-.primary-btn:hover{background:var(--accent);color:#1F2F3C}
-.start-btn:disabled, .primary-btn:disabled{opacity:0.4;cursor:not-allowed;}
-button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* reglas */
+.rules{display:grid;margin:0;padding:0;list-style:none}
+.rules li{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:1rem;padding:14px 0;border-bottom:1px solid var(--line)}
+.rules li:last-child{border-bottom:0}
+.rules svg{margin-top:3px}
 
-.meta-row{
-  display:flex;
-  gap:18px;
-  margin-top:22px;
-  flex-wrap:wrap;
-}
-.meta-item{
-  font-size:13px;
-  font-weight:500;
-  color:var(--ink-soft);
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-.meta-item::before{content:"·";color:var(--accent);font-weight:700}
+.sub-head{margin-top:52px}
 
-.options{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  margin-bottom:26px;
-}
-.opt{
-  border:1px solid var(--line);
-  background:var(--paper);
-  border-radius:14px;
-  padding:15px 16px;
-  cursor:pointer;
-  display:flex;
-  align-items:flex-start;
-  gap:12px;
-  text-align:left;
-  font-family:'Hanken Grotesk',sans-serif;
-  font-size:15.5px;
-  line-height:1.45;
-  color:var(--ink);
-  transition:border-color .15s ease, background .15s ease;
-}
-.opt:hover{border-color:var(--accent);}
-.opt.selected{
-  border-color:var(--accent-strong);
-  background:color-mix(in srgb, var(--accent) 18%, var(--paper-raised));
-}
-.opt-letter{
-  font-size:12px;
-  font-weight:700;
-  color:var(--accent-strong);
-  border:1.5px solid var(--accent-strong);
-  border-radius:50%;
-  width:24px;
-  height:24px;
-  min-width:24px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-top:0;
-}
-.opt.selected .opt-letter{background:var(--accent-strong);color:var(--paper-raised)}
+/* casos */
+.cases{background:var(--white) url("img/papel-blanco.jpg") center/600px repeat}
+.case{display:grid;gap:22px;padding-block:40px;border-top:1px solid var(--line)}
+.case:first-of-type{border-top:0;padding-top:0}
+.case-info{display:grid;gap:14px;min-width:0}
+.case-info .eyebrow{color:var(--peri-ink)}
+.case-info h3{font-size:clamp(1.6rem,6.5vw,2.2rem);font-weight:700}
+.case-info .lead{font-size:1rem}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:.78rem;font-weight:500;padding:.3em .75em;border-radius:999px;background:var(--blush);color:var(--night)}
+ul.did{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+ul.did li{display:grid;grid-template-columns:14px 1fr;gap:10px;font-size:.96rem}
+ul.did li::before{content:"";width:7px;height:7px;margin-top:.62em;border-radius:50%;background:var(--butter-dark)}
 
-.nav-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-}
-.back-link{
-  font-size:14px;
-  font-weight:500;
-  color:var(--ink-soft);
-  background:none;
-  border:none;
-  cursor:pointer;
-  padding:8px 0;
-  font-family:inherit;
-}
-.back-link:disabled{visibility:hidden;}
+.results{background:var(--night);color:var(--white);padding:22px;display:grid;gap:16px;border-radius:4px}
+.results .eyebrow{color:var(--butter)}
+.nums{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 14px}
+.num b{display:block;font-weight:800;font-size:clamp(1.9rem,8vw,2.8rem);line-height:1;color:var(--butter);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.num span{display:block;font-size:.85rem;margin-top:6px;opacity:.85;line-height:1.4}
+.results small{font-size:.8rem;opacity:.72;line-height:1.45}
 
-/* results */
-.severity-stripe{
-  height:6px;
-  border-radius:3px;
-  margin-bottom:22px;
-}
-.stage-pill{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  font-size:12px;
-  font-weight:600;
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  color:var(--ink-soft);
-  border:1px solid var(--line);
-  border-radius:999px;
-  padding:6px 13px;
-  margin-bottom:16px;
-}
-.readout{
-  font-size:14px;
-  color:var(--ink-soft);
-  line-height:1.8;
-  border-top:1px dashed var(--line);
-  border-bottom:1px dashed var(--line);
-  padding:14px 0;
-  margin:22px 0;
-}
-.readout div{display:flex;justify-content:space-between;gap:12px;}
-.readout span.val{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:700}
+/* galerías: en celular se deslizan de lado */
+.side{display:grid;gap:10px;min-width:0}
+.scroller{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin-inline:-18px;padding:4px 18px 10px;scrollbar-width:thin}
+.scroller figure{flex:0 0 62%;scroll-snap-align:start}
+.scroller figure.wide{flex-basis:86%}
+figure{margin:0;display:grid;gap:6px;align-content:start}
+figure img{width:100%;display:block;border-radius:3px;box-shadow:0 8px 22px -12px rgba(31,47,60,.45);background:var(--line)}
+img.r45{aspect-ratio:4/5;object-fit:cover}
+img.r916{aspect-ratio:9/16;object-fit:cover}
+img.shot{aspect-ratio:591/1280;object-fit:cover;object-position:top}
+figcaption{font-size:.76rem;color:var(--muted);line-height:1.35}
+.hint{font-size:.74rem;color:var(--muted)}
 
-.rec-card{
-  border-radius:16px;
-  padding:22px;
-  margin:22px 0;
-  border:1px solid var(--line);
-}
-.rec-card.level-none{background:color-mix(in srgb, var(--good) 10%, var(--paper-raised));}
-.rec-card.level-guiado{background:color-mix(in srgb, var(--accent) 18%, var(--paper-raised));}
-.rec-card.level-gestionado{background:color-mix(in srgb, var(--butter) 34%, var(--paper-raised));}
-.rec-level{
-  font-size:12px;
-  font-weight:600;
-  text-transform:uppercase;
-  letter-spacing:0.12em;
-  margin:0 0 6px;
-  color:var(--ink-soft);
-}
-.rec-title{
-  font-family:'Hanken Grotesk',sans-serif;
-  font-weight:700;
-  font-size:21px;
-  letter-spacing:-.015em;
-  margin:0 0 10px;
-}
-.rec-body{font-size:15.5px;line-height:1.6;color:var(--ink-soft);margin:0;}
-.rec-price{
-  font-size:14px;
-  font-weight:700;
-  margin-top:12px;
-  color:var(--ink);
-}
+/* propuestas */
+.prop{display:grid;gap:22px;padding-block:36px;border-top:1px solid var(--line)}
+.prop:first-of-type{border-top:0;padding-top:0}
+.badge{justify-self:start;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--butter);color:var(--night);padding:.3em .7em;border-radius:2px}
+ol.steps{margin:0;padding:0;list-style:none;display:grid;gap:12px;counter-reset:s}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;gap:10px;font-size:.96rem}
+ol.steps li::before{content:counter(s);width:26px;height:26px;border-radius:50%;background:var(--peri-soft);color:var(--white);font-weight:700;font-size:.8rem;display:grid;place-items:center;margin-top:1px}
+ol.steps b{display:block}
 
-.tips{
-  list-style:none;
-  margin:18px 0;
-  padding:0;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-.tips li{
-  display:flex;
-  gap:10px;
-  font-size:15.5px;
-  line-height:1.55;
-  color:var(--ink-soft);
-}
-.tips li::before{
-  content:"";
-  flex:none;
-  width:12px;height:12px;margin-top:5px;
-  background:var(--butter-ink);
-  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/%3E%3C/svg%3E") center/contain no-repeat;
-          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/%3E%3C/svg%3E") center/contain no-repeat;
-}
+/* modalidades */
+.plans{display:grid;gap:14px}
+.plan{border:1px solid var(--line);background:var(--white);padding:24px;border-radius:4px;display:grid;gap:12px;align-content:start}
+.plan.alt{background:var(--peri-ink);border-color:var(--peri-ink);color:var(--white)}
+.plan .eyebrow{color:var(--peri-ink)}
+.plan.alt .eyebrow{color:var(--butter)}
+.plan h3{font-size:1.55rem;font-weight:700}
+.plan .one{font-size:.98rem}
+.plan.alt ul.did li::before{background:var(--butter)}
+.plan .foot{font-size:.9rem;font-weight:600;border-top:1px solid var(--line);padding-top:12px}
+.plan.alt .foot{border-color:rgba(255,255,255,.3)}
+.quote{margin-top:16px;background:var(--blush);padding:20px;border-radius:4px;display:grid;gap:14px}
+.quote p{font-size:.97rem}
+.quote .sel{justify-self:start}
+.weeks{display:grid;gap:16px;margin-top:40px}
+.week{display:grid;gap:4px;padding-top:14px;border-top:2px solid var(--peri)}
+.week .eyebrow{color:var(--peri-ink)}
+.week b{font-size:1.05rem}
+.week p{font-size:.93rem;color:var(--muted)}
+.note{margin-top:22px;color:var(--muted);font-size:.93rem;max-width:70ch}
 
-.cta-row{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:26px;
-}
-.ghost-btn{
-  font-family:'Hanken Grotesk',sans-serif;
-  font-weight:600;
-  font-size:15px;
-  background:none;
-  border:1.5px solid var(--line);
-  color:var(--ink);
-  border-radius:999px;
-  padding:13px 22px;
-  cursor:pointer;
-}
-.ghost-btn:hover{border-color:var(--accent);}
+/* misión */
+.mission{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.mission li{display:grid;gap:4px;padding:16px 18px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+.mission li span{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--butter-dark)}
 
-.contact-form{
-  margin-top:20px;
-  padding-top:20px;
-  border-top:1px dashed var(--line);
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-.field label{
-  display:block;
-  font-size:13px;
-  font-weight:600;
-  color:var(--ink-soft);
-  margin-bottom:5px;
-}
-.field input{
-  width:100%;
-  font-family:'Hanken Grotesk',sans-serif;
-  font-size:15.5px;
-  padding:12px 14px;
-  border-radius:12px;
-  border:1px solid var(--line);
-  background:var(--paper);
-  color:var(--ink);
-}
-.field input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+/* contacto */
+.contact{background:var(--peri) url("img/papel-azul.jpg") center/cover;color:var(--white);position:relative;overflow:hidden}
+.contact h2{max-width:18ch}
+.contact .grid{display:grid;gap:12px;margin-top:30px}
+.cbox{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.38);padding:20px;border-radius:4px;display:grid;gap:8px;align-content:start;min-width:0}
+.cbox .eyebrow{color:var(--butter)}
+.cbox .val{font-size:1.2rem;font-weight:700;word-break:break-word}
+.cbox p{font-size:.9rem;opacity:.94}
+.cbox a.link{font-weight:600;text-underline-offset:4px}
+.copy{justify-self:start;font:inherit;font-size:.85rem;font-weight:600;background:var(--white);color:var(--peri-ink);border:0;padding:.5em 1em;border-radius:999px;cursor:pointer;min-height:36px}
+.copy:hover{background:var(--butter);color:var(--night)}
+footer{text-align:center;padding-block:34px 30px;font-size:.9rem;background:var(--night);color:var(--white)}
+footer .logo{font-size:2rem;display:block;margin-bottom:6px}
 
-.restart{
-  display:block;
-  margin:26px auto 0;
-  font-family:inherit;
-  font-size:13px;
-  color:var(--ink-soft);
-  background:none;
-  border:none;
-  cursor:pointer;
-  text-decoration:underline;
-}
+/* botón fijo en celular */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(247,248,250,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--line);display:flex;gap:10px}
+.dock .sel{flex:1}
+.dock .alt{flex:none;display:inline-flex;align-items:center;justify-content:center;padding:0 16px;border:1px solid var(--line);border-radius:2px;text-decoration:none;font-weight:600;font-size:.9rem;color:var(--peri-ink);background:var(--white)}
 
-.wa-note{
-  font-size:12.5px;
-  font-weight:600;
-  color:var(--warn);
-  margin-top:10px;
+/* ─── pantallas grandes ─── */
+@media (min-width:760px){
+  body{font-size:17px;padding-bottom:0}
+  .wrap{padding-inline:clamp(24px,4vw,40px)}
+  .dock{display:none}
+  section{padding-block:clamp(72px,9vw,104px)}
+  .hero{padding-block:84px 96px}
+  .head{margin-bottom:42px}
+  .vs{grid-template-columns:1fr 1fr;gap:18px}
+  .vs > div{padding:28px}
+  .outcomes{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+  .cycle{grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+  .cycle li{grid-template-columns:1fr;justify-items:start;gap:10px;padding:0}
+  .cycle li:not(:last-child)::after{left:52px;right:-2px;top:20px;bottom:auto;width:auto;height:1.5px}
+  .loop{padding-left:0;margin-top:22px}
+  .stages{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .case,.prop{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(28px,5vw,56px);align-items:start;padding-block:48px}
+  .scroller{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible;margin-inline:0;padding:0;gap:12px}
+  .scroller figure{flex:none}
+  .scroller figure.wide{grid-column:1/-1}
+  .hint{display:none}
+  .plans{grid-template-columns:1fr 1fr;gap:18px}
+  .weeks{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+  .mission{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .contact .grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 }
-
-/* gate screen */
-.teaser-block{
-  position:relative;
-  margin:22px 0 26px;
-}
-.teaser-text{
-  font-size:16px;
-  line-height:1.6;
-  color:var(--ink-soft);
-  filter:blur(5px);
-  user-select:none;
-  margin:0;
-}
-.teaser-lock{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  font-size:12px;
-  font-weight:700;
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  color:var(--accent-strong);
-}
-.teaser-lock svg{width:15px;height:15px}
-.gate-form{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  margin:22px 0 6px;
-}
-.gate-hint{
-  font-size:13.5px;
-  color:var(--ink-soft);
-  margin:-4px 0 4px;
-}
-.skip-link{
-  display:block;
-  text-align:center;
-  margin-top:16px;
-  font-family:inherit;
-  font-size:13px;
-  color:var(--ink-soft);
-  background:none;
-  border:none;
-  cursor:pointer;
-  text-decoration:underline;
-}
-
-/* results CTA hierarchy */
-.cta-stack{margin-top:26px;display:flex;flex-direction:column;gap:10px;}
-.decline-link{
-  align-self:center;
-  margin-top:6px;
-  font-family:inherit;
-  font-size:13px;
-  color:var(--ink-soft);
-  background:none;
-  border:none;
-  cursor:pointer;
-  text-decoration:underline;
-  opacity:0.8;
-}
-.foot{margin-top:22px;text-align:center;font-size:12.5px;color:var(--ink-soft)}
-
-[hidden]{display:none!important;}
-
-@media (prefers-reduced-motion: reduce){
-  .scanbar-fill{transition:none;}
+@media (prefers-reduced-motion:no-preference){
+  .tw{animation:tw 2.4s ease-in-out infinite}
+  .tw.d{animation-delay:1.1s}
+  @keyframes tw{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(.82) rotate(12deg)}}
 }
 </style>
 
-<div class="wrap">
-  <div class="brandbar">
-    <div class="logo" aria-label="merkha"><span class="it">m</span>erkha<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div>
-    <div class="step-readout" id="stepReadout"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="star" viewBox="0 0 100 100"><path d="M50 6c3 0 5 2 6.3 5l10 21.8 23.6 2.6c3.3.4 5.3 2.2 6.1 4.8.8 2.7-.1 5.2-2.4 7.4L76 63.3l4.9 23.3c.6 3.2-.4 5.8-2.6 7.4-2.3 1.6-5 1.6-7.8 0L50 82.3 29.5 94c-2.8 1.6-5.5 1.6-7.8 0-2.2-1.6-3.2-4.2-2.6-7.4L24 63.3 6.4 47.6C4.1 45.4 3.2 42.9 4 40.2c.8-2.6 2.8-4.4 6.1-4.8l23.6-2.6 10-21.8C45 8 47 6 50 6Z"/></symbol>
+  </defs>
+</svg>
+
+<div class="bar">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="merkha, ir al inicio"><i>m</i>erkha</a>
+    <nav class="chips" aria-label="Secciones">
+      <a href="#sistema">El sistema</a>
+      <a href="#casos">Casos</a>
+      <a href="#propuestas">Propuestas</a>
+      <a href="#modalidades">Cómo trabajamos</a>
+      <a href="#cotizar">Cotizar</a>
+    </nav>
   </div>
-  <div class="scanbar"><div class="scanbar-fill" id="scanFill" style="width:0%"></div></div>
+</div>
 
-  <!-- INTRO -->
-  <div class="card cover" id="screen-intro">
-    <span class="cover-star" style="width:22px;height:22px;top:22px;right:26px"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg></span>
-    <span class="cover-star" style="width:14px;height:14px;top:58px;right:62px"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg></span>
-    <p class="eyebrow">Diagnóstico gratuito · 2 minutos</p>
-    <h1>Radiografía de <b>Negocio</b></h1>
-    <p class="lede">7 preguntas sobre cómo está tu presencia en redes hoy. Al final sabes exactamente qué le falta a tu negocio para conseguir clientes desde ahí, y si eso te conviene resolverlo tú o con ayuda. Tú decides al final si quieres que te contactemos, aquí nadie te va a perseguir.</p>
-    <button class="start-btn" onclick="startQuiz()">Empezar diagnóstico →</button>
-    <div class="meta-row">
-      <div class="meta-item">Sin registro</div>
-      <div class="meta-item">Resultado inmediato</div>
-      <div class="meta-item">Tú decides si te contactamos</div>
+<header class="hero" id="inicio">
+  <div class="wrap">
+    <div class="hero-body">
+      <span class="eyebrow">Merkha · sistema de contenido</span>
+      <h1><span>Clientes</span>Sin Perseguir</h1>
+      <p class="sub">Construimos un sistema de contenido que atrae al cliente correcto, aleja al que no puede pagar y <b>prepara la venta antes de la primera conversación.</b></p>
+      <p class="who">Soy Khamyla Lutfi. Hago community management desde 2020 y hoy dirijo Merkha, que trabaja con negocios de cualquier parte del mundo. Aquí está el sistema y los negocios donde lo hemos aplicado.</p>
+      <div class="btns">
+        <a class="sel" href="#casos">Ver los casos</a>
+        <a class="ghost" href="#cotizar">Pedir cotización</a>
+      </div>
     </div>
   </div>
+  <svg class="star s1 tw" width="48" height="48" fill="#EEE5A4" aria-hidden="true"><use href="#star"/></svg>
+  <svg class="star s2 tw d" width="26" height="26" fill="#EEE5A4" aria-hidden="true"><use href="#star"/></svg>
+</header>
 
-  <!-- QUIZ -->
-  <div class="card" id="screen-quiz" hidden>
-    <p class="eyebrow" id="quizEyebrow"></p>
-    <h2 class="qtitle" id="qtitle"></h2>
-    <div class="options" id="qoptions"></div>
-    <div class="nav-row">
-      <button class="back-link" id="backBtn" onclick="goBack()">← Anterior</button>
-      <button class="primary-btn" id="nextBtn" disabled onclick="goNext()">Siguiente →</button>
+<main>
+<!-- POSICIONAMIENTO -->
+<section id="sistema">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Posicionamiento</span>
+      <h2>Esto <b>no es manejo de redes.</b></h2>
+      <p>El manejo de redes típico llena un calendario y espera a que alguien escriba. Clientes Sin Perseguir convierte cada pieza en un paso de venta, antes de que exista una llamada.</p>
+    </div>
+    <div class="vs">
+      <div class="old">
+        <span class="eyebrow">Lo típico</span>
+        <ul><li>Publica y espera</li><li>Compite con descuentos</li><li>Copia lo que está en tendencia</li><li>Le habla a cualquiera</li></ul>
+      </div>
+      <div class="new">
+        <span class="eyebrow">Sin perseguir</span>
+        <ul><li>Pre-vende antes de la llamada</li><li>Posiciona y filtra, no regatea</li><li>Nace de tu historia real</li><li>Invita solo a quien puede pagar</li></ul>
+      </div>
+    </div>
+
+    <div class="head sub-head">
+      <span class="eyebrow">El resultado</span>
+      <h2>Así opera tu negocio <b>cuando el sistema ya está corriendo</b></h2>
+    </div>
+    <div class="outcomes">
+      <div class="outcome"><b>Te escriben ya convencidos.</b><span>Preguntan precio y disponibilidad, no qué haces.</span></div>
+      <div class="outcome"><b>Dejas de competir por precio.</b><span>El contenido ya hizo la venta antes de la conversación.</span></div>
+      <div class="outcome"><b>El equipo se mantiene mínimo.</b><span>Hace el trabajo de un vendedor de tiempo completo.</span></div>
+      <div class="outcome"><b>Cada cierre alimenta el siguiente.</b><span>El caso de éxito de hoy es el gancho de mañana.</span></div>
+      <div class="outcome"><b>Dejas de perseguir.</b><span>Quien no puede pagar se filtra solo, antes de escribirte.</span></div>
     </div>
   </div>
+</section>
 
-  <!-- GATE (teaser + captura ligera antes de revelar el diagnóstico completo) -->
-  <div class="card" id="screen-gate" hidden>
-    <div class="severity-stripe" id="gateStripe"></div>
-    <p class="stage-pill" id="gateStagePill"></p>
-    <h1>Tu radiografía <span class="sel">ya está lista</span></h1>
-    <div class="teaser-block">
-      <p class="teaser-text" id="gateTeaserText"></p>
-      <div class="teaser-lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Se desbloquea abajo</div>
+<!-- MECANISMO -->
+<section style="background:var(--white);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">El mecanismo</span>
+      <h2>El ciclo que <b>se alimenta solo</b></h2>
+      <p>Cada cliente que cierra no es el final. Es materia prima para el siguiente extraño que va a llegar.</p>
     </div>
-    <div class="gate-form">
-      <div class="field">
-        <label for="gName">Tu nombre</label>
-        <input id="gName" type="text" placeholder="Ej. Roberto Salinas">
-      </div>
-      <div class="field">
-        <label for="gBiz">Tu negocio y a qué se dedica</label>
-        <input id="gBiz" type="text" placeholder="Ej. Taller Salinas, mecánica automotriz">
-      </div>
-      <div class="field">
-        <label for="gWhatsapp">Tu WhatsApp</label>
-        <input id="gWhatsapp" type="text" placeholder="Ej. 55 1234 5678">
-      </div>
-      <p class="gate-hint">Es para personalizar tu resultado y para que, si quieres, puedas mandarlo por WhatsApp con un clic. No te contactamos sin que tú des enviar.</p>
-      <button class="primary-btn" onclick="revealResults(true)">Ver mi radiografía completa →</button>
+    <ol class="cycle">
+      <li><span class="n">1</span><div><b>Extraño</b><small>atraemos</small></div></li>
+      <li><span class="n">2</span><div><b>Seguidor</b><small>nutrimos</small></div></li>
+      <li><span class="n">3</span><div><b>Levanta la mano</b><small>filtramos</small></div></li>
+      <li><span class="n">4</span><div><b>Cliente</b><small>derivamos</small></div></li>
+      <li class="on"><span class="n">5</span><div><b>Caso de éxito</b><small>alimenta</small></div></li>
+    </ol>
+    <p class="loop">El caso de éxito vuelve a nutrir el ciclo desde el inicio.</p>
+
+    <div class="head sub-head">
+      <span class="eyebrow">El motor</span>
+      <h2>4 etapas y <b>los 9 tipos de contenido</b></h2>
     </div>
-    <button class="skip-link" onclick="revealResults(false)">Prefiero verla sin dejar mis datos</button>
+    <div class="stages">
+      <div class="stage"><span class="eyebrow">01 · Conexión · Atraemos</span><h3>Quién eres</h3><p>Es lo que hace que un extraño se detenga a mirar.</p>
+        <ul><li>Quién eres: la persona o la empresa detrás del negocio</li><li>Cicatrices y fracasos que generan conexión profunda</li><li>El estándar de vida que refleja tus estándares de trabajo</li></ul></div>
+      <div class="stage"><span class="eyebrow">02 · Educación · Nutrimos</span><h3>Por qué confiar</h3><p>El seguidor empieza a entender por qué deberías cobrar lo que cobras.</p>
+        <ul><li>La obsesión por cómo cuidas a tu cliente (backstage)</li><li>Cómo solucionas un problema</li><li>Qué giro le diste a una situación difícil</li><li>Tu postura con la industria</li><li>Malas prácticas del sector, denunciadas sin filtro</li></ul></div>
+      <div class="stage"><span class="eyebrow">03 · Conversión · Filtramos</span><h3>Es esto para mí</h3><p>Disuelve miedos y objeciones antes de que se digan en voz alta.</p>
+        <ul><li>Con quién sí trabajas y con quién no</li></ul></div>
+      <div class="stage"><span class="eyebrow">04 · Transformación · Derivamos</span><h3>Sí funciona</h3><p>Ese caso de éxito es el contenido que atrae al siguiente extraño.</p>
+        <ul><li>Caso de éxito cerrado, con resultado real</li><li>El backstage de cuidado ya convertido en historia con final</li></ul></div>
+    </div>
+
+    <div class="head sub-head" style="margin-bottom:10px">
+      <span class="eyebrow">Diferenciador</span>
+      <h2>Las reglas que <b>no se negocian</b></h2>
+    </div>
+    <ul class="rules">
+      <li><svg width="18" height="18" fill="#C9B75A" aria-hidden="true"><use href="#star"/></svg><span><b>No copiamos lo que ya existe en internet.</b> Si tu contenido se parece al de cualquier otro negocio del sector, no está haciendo su trabajo.</span></li>
+      <li><svg width="18" height="18" fill="#C9B75A" aria-hidden="true"><use href="#star"/></svg><span><b>Hablamos de tu historia real,</b> no de una versión editada para quedar bien.</span></li>
+      <li><svg width="18" height="18" fill="#C9B75A" aria-hidden="true"><use href="#star"/></svg><span><b>Tomamos postura</b> sobre las malas prácticas del sector, aunque incomode.</span></li>
+      <li><svg width="18" height="18" fill="#C9B75A" aria-hidden="true"><use href="#star"/></svg><span><b>Decimos con quién sí trabajamos y con quién no.</b> Eso también es contenido.</span></li>
+      <li><svg width="18" height="18" fill="#C9B75A" aria-hidden="true"><use href="#star"/></svg><span><b>Invitamos a la persona correcta</b> a levantar la mano. No perseguimos a la que no.</span></li>
+    </ul>
   </div>
+</section>
 
-  <!-- RESULTS -->
-  <div class="card" id="screen-results" hidden>
-    <div class="severity-stripe" id="severityStripe"></div>
-    <p class="stage-pill" id="stagePill"></p>
-    <h1 id="resultHeadline"></h1>
-    <p class="lede" id="resultDiagnosis"></p>
-
-    <div class="readout" id="readout"></div>
-
-    <div class="rec-card" id="recCard">
-      <p class="rec-level" id="recLevel"></p>
-      <h3 class="rec-title" id="recTitle"></h3>
-      <p class="rec-body" id="recBody"></p>
-      <p class="rec-price" id="recPrice"></p>
+<!-- CASOS -->
+<section class="cases" id="casos">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Casos</span>
+      <h2>El mismo sistema, <b>adaptado a cada negocio.</b></h2>
+      <p>Cada uno con su giro, su cliente y su tono. El motor es el mismo: entender a quién le vende, qué le preocupa a esa persona y qué contenido la acerca a levantar la mano.</p>
     </div>
 
-    <ul class="tips" id="tipsList" hidden></ul>
-
-    <div class="cta-stack" id="ctaRow">
-      <button class="primary-btn" id="yesBtn" onclick="openContactForm('ya')">Sí, quiero resolver esto ya</button>
-      <button class="ghost-btn" id="noBtn" onclick="openContactForm('luego')">Quiero pensarlo, mándame mi diagnóstico por WhatsApp</button>
-      <button class="decline-link" onclick="declineContact()">Cerrar sin enviar nada</button>
-    </div>
-
-    <div class="contact-form" id="contactForm" hidden>
-      <div class="field">
-        <label for="fName">Tu nombre</label>
-        <input id="fName" type="text" placeholder="Ej. Roberto Salinas">
+    <!-- MALA FAMA -->
+    <article class="case">
+      <div class="case-info">
+        <span class="eyebrow">Academia de Jiu-Jitsu · Cuernavaca, México</span>
+        <h3>Mala Fama BJJ</h3>
+        <p class="lead">La academia crecía de boca en boca. Armamos su identidad en redes, un mes completo de contenido y su primera campaña de anuncios a WhatsApp para agendar clase de muestra.</p>
+        <div class="tags"><span>Estrategia</span><span>Branding de redes</span><span>Reels y carruseles</span><span>Meta Ads</span><span>Automatización</span></div>
+        <ul class="did">
+          <li><span><b>Conexión:</b> el avatar principal es el papá de 35 que cree que ya es tarde para empezar. Ese ángulo fue el que mejor vendió.</span></li>
+          <li><span><b>Conversión:</b> carrusel con lo que nadie te dice antes de tu primera clase, para bajar el miedo antes del mensaje.</span></li>
+          <li><span><b>Transformación:</b> historias con mensajes reales de alumnos después de su clase de prueba.</span></li>
+          <li><span>Control de pagos en Google Sheets con recordatorios automáticos de mensualidad.</span></li>
+        </ul>
+        <div class="results">
+          <span class="eyebrow">Primera campaña de anuncios</span>
+          <div class="nums">
+            <div class="num"><b>39</b><span>conversaciones de WhatsApp en los primeros 4 días</span></div>
+            <div class="num"><b>6</b><span>alumnos nuevos inscritos, cuando se esperaban de 1 a 3</span></div>
+          </div>
+        </div>
       </div>
-      <div class="field">
-        <label for="fBiz">Nombre de tu negocio</label>
-        <input id="fBiz" type="text" placeholder="Ej. Taller Salinas">
+      <div class="side">
+        <div class="scroller">
+          <figure><img class="r45" src="img/mf-car1.jpg" alt="Portada de carrusel de Mala Fama: ¿De qué team eres cuando entrenas BJJ?" loading="lazy"><figcaption>Carrusel</figcaption></figure>
+          <figure><img class="r45" src="img/mf-car2.jpg" alt="Portada de carrusel: Lo que nadie te dice antes de tu primera clase de BJJ" loading="lazy"><figcaption>Carrusel de objeciones</figcaption></figure>
+          <figure><img class="r45" src="img/mf-car3.jpg" alt="Portada de carrusel: Los podios no se ganan por suerte" loading="lazy"><figcaption>Carrusel de competencia</figcaption></figure>
+          <figure><img class="r916" src="img/mf-sintio.jpg" alt="Historia con el mensaje de un alumno después de su clase de prueba" loading="lazy"><figcaption>Historia de prueba social</figcaption></figure>
+          <figure><img class="r916" src="img/mf-historia.jpg" alt="Historia de cita: El lobo que aprendió a pensar antes de morder" loading="lazy"><figcaption>Plantilla de historia</figcaption></figure>
+          <figure><img class="r916" src="img/mf-grupo.jpg" alt="Fotos grupales de alumnos de Mala Fama en el tatami" loading="lazy"><figcaption>Foto real de comunidad</figcaption></figure>
+        </div>
+        <span class="hint">Desliza para ver más →</span>
       </div>
-      <div class="field">
-        <label for="fContact">Tu WhatsApp o Instagram</label>
-        <input id="fContact" type="text" placeholder="Ej. 55 1234 5678 o @tallersalinas">
+    </article>
+
+    <!-- MENTE TRANSPARENTE -->
+    <article class="case">
+      <div class="case-info">
+        <span class="eyebrow">Meditaciones personalizadas · Israel</span>
+        <h3>Mente Transparente</h3>
+        <p class="lead">Mijael Askenazi guía meditaciones privadas y visualizaciones online. Cuando llegamos, la bio no explicaba qué ofrecía ni cómo reservar, y el contenido salía sin estrategia: en un mes su perfil había llegado a 9 cuentas.</p>
+        <div class="tags"><span>Estrategia</span><span>Optimización de perfil</span><span>Reels y carruseles</span><span>Palabra clave por DM</span><span>Reportes mensuales</span></div>
+        <ul class="did">
+          <li><span><b>Conexión:</b> reels con Mijael a cámara. Fueron los que más crecieron, porque la gente conecta con la persona detrás del proyecto.</span></li>
+          <li><span><b>Educación:</b> carruseles que responden dudas concretas sobre meditar, pensados para tres audiencias distintas.</span></li>
+          <li><span><b>Conversión:</b> bio con una promesa clara, destacadas que guían el camino, reserva directa por WhatsApp y palabra clave en comentarios para llevar la conversación al DM.</span></li>
+          <li><span>Reporte de resultados cada mes para decidir qué se repite y qué se deja.</span></li>
+        </ul>
+        <div class="results">
+          <span class="eyebrow">Resultados · 29 oct al 27 nov</span>
+          <div class="nums">
+            <div class="num"><b>36.4K</b><span>visualizaciones en 30 días</span></div>
+            <div class="num"><b>+289%</b><span>seguidores contra el mes anterior</span></div>
+            <div class="num"><b>+371%</b><span>visitas al perfil (1,466 en el mes)</span></div>
+            <div class="num"><b>+980%</b><span>clics al enlace de reserva</span></div>
+          </div>
+          <small>En las primeras dos semanas de publicación la actividad del perfil pasó de 10 a 125.</small>
+        </div>
       </div>
-      <button class="primary-btn" id="sendWaBtn" onclick="sendWhatsApp()">Enviar por WhatsApp →</button>
-      <p class="wa-note" id="waNote" hidden>Número de WhatsApp de Merkha pendiente de configurar (placeholder de demo).</p>
-    </div>
+      <div class="side">
+        <div class="scroller">
+          <figure><img class="shot" src="img/mt-views.jpg" alt="Captura de Instagram: 36,447 visualizaciones del 29 de octubre al 27 de noviembre" loading="lazy"><figcaption>Visualizaciones del mes</figcaption></figure>
+          <figure><img class="shot" src="img/mt-seg.jpg" alt="Captura de Instagram: 327 seguidores, +289.3%" loading="lazy"><figcaption>Crecimiento de seguidores</figcaption></figure>
+          <figure><img class="shot" src="img/mt-reel.jpg" alt="Reel de Mijael con comentarios de personas pidiendo la meditación por palabra clave" loading="lazy"><figcaption>Palabra clave en comentarios</figcaption></figure>
+          <figure class="wide"><img src="img/mt-chat.jpg" alt="Mensaje de WhatsApp del cliente: ya me han escrito otros dos por meditaciones" loading="lazy"><figcaption>El cliente avisando que le llegaron más personas por meditaciones</figcaption></figure>
+        </div>
+        <span class="hint">Desliza para ver más →</span>
+      </div>
+    </article>
 
-    <div id="declineMsg" hidden>
-      <p class="lede" style="margin-top:18px;">Sin problema. Guarda esta pantalla o toma una captura, ahí está tu diagnóstico completo. Si más adelante cambias de opinión, este mismo test sigue disponible.</p>
-    </div>
+    <!-- SAFARI JUDAICA -->
+    <article class="case">
+      <div class="case-info">
+        <span class="eyebrow">Tienda de artículos judaicos · Israel</span>
+        <h3>Safari Judaica</h3>
+        <p class="lead">Marca de artículos de piel y regalos judaicos. Le dimos una identidad visual de tonos tierra y texturas de safari, y un feed que habla de las fechas y costumbres de su comunidad: aniversarios, bar mitzvah, tefilín.</p>
+        <div class="tags"><span>Identidad visual</span><span>Diseño de feed</span><span>Contenido</span><span>Gestión de redes</span></div>
+        <div class="results">
+          <span class="eyebrow">Resultados en Instagram</span>
+          <div class="nums">
+            <div class="num"><b>+709%</b><span>cuentas alcanzadas contra el mes anterior</span></div>
+            <div class="num"><b>+250%</b><span>cuentas que interactuaron</span></div>
+            <div class="num"><b>11.3K</b><span>visualizaciones en un mes</span></div>
+            <div class="num"><b>288</b><span>interacciones en el mismo periodo</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="side">
+        <div class="scroller">
+          <figure class="wide"><img src="img/safari.jpg" alt="Feed de Instagram de Safari Judaica con fotos de producto en piel y textos en tonos tierra" loading="lazy"><figcaption>Diseño de feed final</figcaption></figure>
+          <figure class="wide"><img src="img/safari-res.jpg" alt="Capturas de estadísticas de Instagram: +709% cuentas alcanzadas, 11.3K visualizaciones" loading="lazy"><figcaption>Capturas de sus estadísticas</figcaption></figure>
+        </div>
+        <span class="hint">Desliza para ver más →</span>
+      </div>
+    </article>
 
-    <button class="restart" onclick="resetQuiz()">Volver a hacer el diagnóstico</button>
+    <!-- EBANISTERIA -->
+    <article class="case">
+      <div class="case-info">
+        <span class="eyebrow">Ebanistería y restauración · Querétaro, México</span>
+        <h3>Ebanistería de muebles a la medida</h3>
+        <p class="lead">Taller de muebles a la medida y restauración de muebles antiguos. El contenido le enseñaba al cliente qué materiales podía elegir y cómo se restauraba un mueble, con reels de tendencias y algo de humor del oficio.</p>
+        <div class="tags"><span>Contenido</span><span>Gestión de redes</span><span>Atención al cliente</span></div>
+        <ul class="did">
+          <li><span>Respondíamos rápido y con buen trato, y las redes se volvieron su principal canal de contacto.</span></li>
+          <li><span>Se posicionó como una de las ebanisterías mejor valoradas de Querétaro por su servicio.</span></li>
+        </ul>
+      </div>
+      <div class="side"><figure><img src="img/ebanisteria.jpg" alt="Piezas de contenido de la ebanistería: meme del carpintero barato, reel de clóset y tendencias en muebles de cocina 2023" loading="lazy"><figcaption>Reels y publicaciones</figcaption></figure></div>
+    </article>
+
+    <!-- EN3D -->
+    <article class="case">
+      <div class="case-info">
+        <span class="eyebrow">Impresión 3D</span>
+        <h3>Laboratorio de impresiones 3D</h3>
+        <p class="lead">Contábamos todo lo que se puede hacer con esta tecnología, de maquetas de arquitectura a prototipos y producto final, y dábamos tips a otros diseñadores 3D. También estábamos presentes en grupos de Facebook del sector, y eso los volvió referentes.</p>
+        <div class="tags"><span>Contenido</span><span>Gestión de redes</span><span>Atención al cliente</span><span>Comunidades</span></div>
+      </div>
+      <div class="side"><figure><img src="img/en3d.jpg" alt="Carruseles de impresión 3D: arquitectura, prototipado rápido y productos finales" loading="lazy"><figcaption>Serie de carruseles por aplicación</figcaption></figure></div>
+    </article>
+
+    <!-- CBD -->
+    <article class="case">
+      <div class="case-info">
+        <span class="eyebrow">Marca de CBD para deportistas</span>
+        <h3>RLX Organics</h3>
+        <p class="lead">Una marca de CBD enfocada en descanso y rendimiento. Llevamos el contenido a atletas de jiu-jitsu brasileño, explicando con datos cómo el CBD les ayuda a recuperarse y a dormir mejor. También renovamos su imagen.</p>
+        <div class="tags"><span>Cambio de imagen</span><span>Contenido</span><span>Gestión de redes</span><span>Atención al cliente</span></div>
+      </div>
+      <div class="side"><figure><img src="img/cbd.jpg" alt="Piezas de RLX: frasco de producto, los días de descanso también son entrenamiento, full espectro qué dice la ciencia" loading="lazy"><figcaption>Publicaciones con la imagen nueva</figcaption></figure></div>
+    </article>
+
+    <!-- PURA VIDA -->
+    <article class="case">
+      <div class="case-info">
+        <span class="eyebrow">Fundación · México y Costa Rica</span>
+        <h3>Pura Vida Fighting for Kids México</h3>
+        <p class="lead">Institución sin fines de lucro que usa el jiu-jitsu brasileño para la reinserción social de niños en situación vulnerable. Organizamos y dirigimos el proyecto en México: programas deportivos y educativos, apadrinamiento, voluntarios, redes sociales y publicidad.</p>
+        <div class="tags"><span>Project management</span><span>Social media</span><span>Publicidad</span></div>
+      </div>
+      <div class="side"><figure><img src="img/puravida.jpg" alt="Publicaciones de Pura Vida Fighting for Kids: por qué amamos F4K, clase de yoga, los niños deben hacer deporte" loading="lazy"><figcaption>Publicaciones de la fundación</figcaption></figure></div>
+    </article>
   </div>
-  <p class="foot">Hecho por Merkha · @merkhamedia</p>
+</section>
+
+<!-- PROPUESTAS -->
+<section id="propuestas">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Propuestas</span>
+      <h2>Así se ve una propuesta <b>antes de arrancar</b></h2>
+      <p>Antes de producir una sola pieza armamos la propuesta visual y la revisas con calma. Esta se presentó a una clínica que al final no arrancó con nosotros, pero muestra bien el proceso.</p>
+    </div>
+
+    <article class="prop">
+      <div class="case-info">
+        <span class="badge">Propuesta</span>
+        <span class="eyebrow">Tratamientos estéticos</span>
+        <h3>Clínica de medicina estética</h3>
+        <p class="lead">Una clínica de tratamientos estéticos que necesitaba verse profesional y confiable, y a la vez producir mucho contenido sin rehacer el diseño cada semana.</p>
+        <ol class="steps">
+          <li><span><b>Qué necesita sentir el paciente</b>Confianza en quien lo atiende antes que antojo por el tratamiento.</span></li>
+          <li><span><b>Paleta y tipografía</b>Turquesa y violetas, con títulos firmes en mayúsculas que se leen rápido en el celular.</span></li>
+          <li><span><b>Moodboard</b>Procedimientos, manos del especialista y resultados, en lugar de fotos genéricas de spa.</span></li>
+          <li><span><b>Plantillas de feed</b>Portadas con espacio para un título gancho y un subtítulo, para que el equipo solo cambie texto y foto.</span></li>
+        </ol>
+      </div>
+      <div class="side">
+        <div class="scroller">
+          <figure class="wide"><img src="img/est-mood.jpg" alt="Propuesta clínica: paleta turquesa y violeta, tipografías y moodboard de procedimientos" loading="lazy"><figcaption>Paleta, tipografía y moodboard</figcaption></figure>
+          <figure class="wide"><img src="img/est-feed.jpg" alt="Plantillas de feed para la clínica con espacio para título gancho y subtítulo" loading="lazy"><figcaption>Plantillas de feed</figcaption></figure>
+        </div>
+        <span class="hint">Desliza para ver más →</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- MODALIDADES -->
+<section id="modalidades" style="background:var(--white);border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Modalidades</span>
+      <h2>Dos formas de operar <b>el mismo sistema</b></h2>
+      <p>El motor no cambia. Cambia quién ejecuta cada etapa.</p>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <span class="eyebrow">Done with you</span>
+        <h3>Guiado</h3>
+        <p class="one">Tú publicas, nosotros construimos el sistema.</p>
+        <ul class="did">
+          <li><span>Estrategia de contenido y calendario</span></li>
+          <li><span>Guion por pieza</span></li>
+          <li><span>Guía de qué y cómo grabar</span></li>
+          <li><span>Edición de video y carruseles</span></li>
+          <li><span>Protocolo de atención y respuesta de mensajes</span></li>
+        </ul>
+        <p class="foot">Publicas y respondes tú. Te acompañamos con seguimiento.</p>
+      </div>
+      <div class="plan alt">
+        <span class="eyebrow">Done for you</span>
+        <h3>Gestionado</h3>
+        <p class="one">Nosotros operamos el sistema completo.</p>
+        <ul class="did">
+          <li><span>Todo lo de Guiado</span></li>
+          <li><span>Publicación del contenido</span></li>
+          <li><span>Respuesta de todos los mensajes</span></li>
+          <li><span>Conversación con nuevos seguidores para detectar oportunidad</span></li>
+          <li><span>Calificación y derivación del lead a cierre</span></li>
+        </ul>
+        <p class="foot">Tú solo cierras. Nosotros operamos todo lo demás.</p>
+      </div>
+    </div>
+    <div class="quote">
+      <p><b>Cada negocio se cotiza por separado.</b> El precio depende del diagnóstico: en qué etapa está tu negocio, cuánto contenido necesitas y si hace falta pauta. Cuando el diagnóstico pide anuncios, se administran aparte con tu presupuesto.</p>
+      <a class="sel" href="https://wa.me/524461447931?text=Hola%20Khamyla%2C%20quiero%20cotizar%20Clientes%20Sin%20Perseguir%20para%20mi%20negocio" target="_blank" rel="noopener">Pedir cotización por WhatsApp</a>
+    </div>
+
+    <div class="weeks">
+      <div class="week"><span class="eyebrow">Semana 1</span><b>Estrategia y temas</b><p>Revisamos tu perfil, a tu cliente y lo que ya funciona en tu giro.</p></div>
+      <div class="week"><span class="eyebrow">Semana 2</span><b>Guiones y grabación</b><p>Te llegan los guiones y grabas con una guía de tomas.</p></div>
+      <div class="week"><span class="eyebrow">Semana 3</span><b>Edición y programación</b><p>Queda el contenido editado y programado. Desde el día uno tienes plantillas de historias para publicar lo que ya tienes.</p></div>
+    </div>
+    <p class="note">Todo lo que se publica pasa antes por tu aprobación: videos, diseños, descripciones y llamados a la acción.</p>
+
+    <div class="head sub-head" style="margin-bottom:18px">
+      <span class="eyebrow">La misión</span>
+      <h2>Esto existe <b>para tres cosas</b></h2>
+    </div>
+    <ul class="mission">
+      <li><span>Uno</span>Ayudar al cliente y a su negocio a llegar a su mejor versión. No solo publicar por publicar.</li>
+      <li><span>Dos</span>Guiar exactamente qué hacer y cómo hacerlo. No se entrega un documento y se desaparece.</li>
+      <li><span>Tres</span>Construir una comunidad alrededor de este sistema.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- COTIZAR -->
+<section class="contact" id="cotizar">
+  <div class="wrap">
+    <span class="eyebrow">Cotiza tu sistema</span>
+    <h2 style="margin-top:12px">¿Listo para <b>dejar de perseguir clientes?</b></h2>
+    <p style="margin-top:12px;max-width:52ch">Escríbenos, arrancamos con el diagnóstico de tu negocio y te mandamos una cotización a la medida.</p>
+    <div class="grid">
+      <div class="cbox">
+        <span class="eyebrow">WhatsApp</span>
+        <span class="val" id="wa">+52 446 144 79 31</span>
+        <p>Cuéntanos de tu negocio y te pasamos la cotización.</p>
+        <div class="btns" style="gap:14px">
+          <a class="link" href="https://wa.me/524461447931?text=Hola%20Khamyla%2C%20quiero%20cotizar%20Clientes%20Sin%20Perseguir%20para%20mi%20negocio" target="_blank" rel="noopener">Pedir cotización</a>
+          <button class="copy" type="button" data-copy="+52 446 144 79 31">Copiar número</button>
+        </div>
+      </div>
+      <div class="cbox">
+        <span class="eyebrow">Diagnóstico gratis</span>
+        <span class="val">Radiografía de Negocio</span>
+        <p>7 preguntas y te dice qué etapa te está fallando, con 3 tips para resolverlo.</p>
+        <a class="link" href="https://marketingkham-cpu.github.io/radiografiadenegocio/" target="_blank" rel="noopener">Hacer el test</a>
+      </div>
+      <div class="cbox">
+        <span class="eyebrow">Instagram</span>
+        <span class="val">@merkhamedia</span>
+        <p>Ahí publicamos backstage, tips y casos.</p>
+        <a class="link" href="https://www.instagram.com/merkhamedia/" target="_blank" rel="noopener">Ver perfil</a>
+      </div>
+    </div>
+  </div>
+  <svg class="star tw" style="right:6%;top:9%" width="36" height="36" fill="#EEE5A4" aria-hidden="true"><use href="#star"/></svg>
+</section>
+</main>
+
+<footer>
+  <span class="logo"><i>m</i>erkha</span>
+  Clientes Sin Perseguir · Khamyla Lutfi · Trabajamos worldwide
+</footer>
+
+<div class="dock">
+  <a class="sel" href="https://wa.me/524461447931?text=Hola%20Khamyla%2C%20quiero%20cotizar%20Clientes%20Sin%20Perseguir%20para%20mi%20negocio" target="_blank" rel="noopener">Pedir cotización</a>
+  <a class="alt" href="#casos">Casos</a>
 </div>
 
 <script>
-// ---- CONFIG (placeholder, pendiente de dato real) ----
-const MERKHA_WHATSAPP_NUMBER = "524461447931"; // WhatsApp de Merkha: +52 446 144 79 31
-
-const STAGES = {
-  conexion: {label:"Conexión", short:"te ven pero no te distinguen"},
-  educacion: {label:"Educación", short:"dudan si sabes resolver su problema"},
-  conversion: {label:"Conversión", short:"se interesan pero no dan el siguiente paso"},
-  transformacion: {label:"Transformación", short:"no ven pruebas de que ya ayudaste a alguien"}
-};
-
-const QUESTIONS = [
-  {
-    stage:"conexion",
-    eyebrow:"Pregunta 1 de 7 · Primera impresión",
-    title:"Si un cliente nuevo llega hoy a tu perfil por primera vez, ¿qué se va a encontrar?",
-    options:[
-      {t:"Una cuenta que casi no se actualiza o que no dice mucho de quiénes somos.", v:0},
-      {t:"Contenido, pero se parece al de cualquier otro negocio del mismo giro.", v:1},
-      {t:"Ya se nota nuestro estilo y lo que nos hace distintos, aunque no siempre.", v:2},
-      {t:"Cualquiera que entra sabe exactamente quiénes somos y por qué elegirnos.", v:3}
-    ]
-  },
-  {
-    stage:"educacion",
-    eyebrow:"Pregunta 2 de 7 · Confianza",
-    title:"Cuando alguien duda si contratarte o no, ¿tu contenido responde esa duda?",
-    options:[
-      {t:"No, casi no explicamos cómo resolvemos el problema del cliente.", v:0},
-      {t:"Publicamos tips o consejos, pero sin conectarlos con lo que vendemos.", v:1},
-      {t:"A veces mostramos cómo trabajamos, pero no es constante.", v:2},
-      {t:"Constantemente mostramos cómo ayudamos y por qué sabemos del tema.", v:3}
-    ]
-  },
-  {
-    stage:"conversion",
-    eyebrow:"Pregunta 3 de 7 · El momento del contacto",
-    title:"Cuando alguien te escribe interesado, ¿qué pasa después?",
-    options:[
-      {t:"Muchas veces ni siquiera contestamos a tiempo.", v:0},
-      {t:"Contestamos, pero no hay un siguiente paso claro (agendar, cotizar, comprar).", v:1},
-      {t:"Tenemos un proceso, pero se nos escapan varios en el camino.", v:2},
-      {t:"Tenemos un proceso claro y la mayoría no se nos va.", v:3}
-    ]
-  },
-  {
-    stage:"transformacion",
-    eyebrow:"Pregunta 4 de 7 · Prueba real",
-    title:"¿Qué tanto se nota en tus redes que ya tienes clientes contentos?",
-    options:[
-      {t:"Nada, no mostramos resultados ni testimonios.", v:0},
-      {t:"Tenemos casos buenos, pero no los hemos publicado.", v:1},
-      {t:"Publicamos alguno de vez en cuando.", v:2},
-      {t:"Es parte constante de lo que publicamos.", v:3}
-    ]
-  },
-  {
-    stage:null,
-    key:"tiempo",
-    eyebrow:"Pregunta 5 de 7 · Realidad operativa",
-    title:"¿Cuánto tiempo le dedican de verdad a crear y publicar contenido al mes?",
-    options:[
-      {t:"Casi nada, se hace cuando se puede.", v:"a"},
-      {t:"Unas horas sueltas, sin plan.", v:"b"},
-      {t:"Tenemos tiempo pero no sabemos bien qué publicar.", v:"c"},
-      {t:"Tenemos tiempo y plan, solo falta quien ejecute.", v:"d"}
-    ]
-  },
-  {
-    stage:null,
-    key:"involucramiento",
-    eyebrow:"Pregunta 6 de 7 · Cómo te quieres involucrar",
-    title:"¿Cómo te gustaría estar involucrado en tus redes de aquí en adelante?",
-    options:[
-      {t:"Quiero delegarlo todo, no tengo tiempo ni ganas de meterme en el día a día.", v:"a"},
-      {t:"Quiero aportar lo mío (grabar, dar ideas) pero que alguien más lo organice y publique.", v:"b"},
-      {t:"Quiero aprender a hacerlo yo mismo, con guía.", v:"c"},
-      {t:"Prefiero hacerlo todo yo, solo quería un diagnóstico honesto.", v:"d"}
-    ]
-  },
-  {
-    stage:null,
-    key:"presupuesto",
-    eyebrow:"Pregunta 7 de 7 · Presupuesto",
-    title:"¿Cuánto presupuesto mensual tienen disponible para esto, sin contar pauta publicitaria?",
-    options:[
-      {t:"Menos de $5,000 MXN.", v:"a"},
-      {t:"Entre $5,000 y $10,000 MXN.", v:"b"},
-      {t:"Entre $10,000 y $15,000 MXN.", v:"c"},
-      {t:"Más de $15,000 MXN.", v:"d"}
-    ]
-  }
-];
-
-let current = 0;
-let answers = new Array(QUESTIONS.length).fill(null);
-let gateData = {name:"", biz:"", whatsapp:""};
-let contactMode = "ya";
-
-function startQuiz(){
-  document.getElementById("screen-intro").hidden = true;
-  document.getElementById("screen-quiz").hidden = false;
-  renderQuestion();
-}
-
-function renderQuestion(){
-  const q = QUESTIONS[current];
-  document.getElementById("quizEyebrow").textContent = q.eyebrow;
-  document.getElementById("qtitle").textContent = q.title;
-  const optWrap = document.getElementById("qoptions");
-  optWrap.innerHTML = "";
-  q.options.forEach((opt, i) => {
-    const btn = document.createElement("button");
-    btn.className = "opt" + (answers[current] === i ? " selected" : "");
-    btn.type = "button";
-    btn.innerHTML = '<span class="opt-letter">' + String.fromCharCode(65+i) + '</span><span>' + opt.t + '</span>';
-    btn.onclick = () => selectOption(i);
-    optWrap.appendChild(btn);
+document.querySelectorAll('.copy').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var t=btn.getAttribute('data-copy'), old=btn.textContent;
+    function done(){btn.textContent='Copiado';setTimeout(function(){btn.textContent=old},1600)}
+    function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById('wa'));var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selecciónalo y copia'}
+    try{navigator.clipboard.writeText(t).then(done,sel)}catch(e){sel()}
   });
-  document.getElementById("backBtn").disabled = current === 0;
-  document.getElementById("nextBtn").disabled = answers[current] === null;
-  document.getElementById("nextBtn").textContent = current === QUESTIONS.length - 1 ? "Ver mi diagnóstico →" : "Siguiente →";
-  updateProgress();
-}
-
-function selectOption(i){
-  answers[current] = i;
-  renderQuestion();
-}
-
-function updateProgress(){
-  const pct = Math.round(((current) / QUESTIONS.length) * 100);
-  document.getElementById("scanFill").style.width = pct + "%";
-  document.getElementById("stepReadout").textContent = "PASO " + (current+1) + "/" + QUESTIONS.length;
-}
-
-function goNext(){
-  if (answers[current] === null) return;
-  if (current === QUESTIONS.length - 1){
-    document.getElementById("scanFill").style.width = "100%";
-    showGate();
-    return;
-  }
-  current++;
-  renderQuestion();
-}
-
-function goBack(){
-  if (current === 0) return;
-  current--;
-  renderQuestion();
-}
-
-function resetQuiz(){
-  current = 0;
-  answers = new Array(QUESTIONS.length).fill(null);
-  gateData = {name:"", biz:"", whatsapp:""};
-  contactMode = "ya";
-  document.getElementById("gName").value = "";
-  document.getElementById("gBiz").value = "";
-  document.getElementById("gWhatsapp").value = "";
-  document.getElementById("screen-gate").hidden = true;
-  document.getElementById("screen-results").hidden = true;
-  document.getElementById("screen-intro").hidden = false;
-  document.getElementById("contactForm").hidden = true;
-  document.getElementById("declineMsg").hidden = true;
-  document.getElementById("ctaRow").hidden = false;
-  document.getElementById("tipsList").hidden = true;
-  document.getElementById("scanFill").style.width = "0%";
-  document.getElementById("stepReadout").textContent = "";
-}
-
-function computeDiagnosis(){
-  const stageScores = {conexion:0, educacion:0, conversion:0, transformacion:0};
-  QUESTIONS.forEach((q, i) => {
-    if (q.stage){
-      stageScores[q.stage] = q.options[answers[i]].v;
-    }
-  });
-
-  const tiempo = QUESTIONS[4].options[answers[4]].v;
-  const involucramiento = QUESTIONS[5].options[answers[5]].v;
-  const presupuesto = QUESTIONS[6].options[answers[6]].v;
-
-  const stageOrder = ["conexion","educacion","conversion","transformacion"];
-  let bottleneck = stageOrder[0];
-  stageOrder.forEach(s => { if (stageScores[s] < stageScores[bottleneck]) bottleneck = s; });
-  const totalScore = stageOrder.reduce((a,s)=>a+stageScores[s],0); // 0-12
-
-  const rec = recommend(involucramiento, presupuesto, tiempo);
-  return {bottleneck, stageScores, totalScore, rec, stageOrder};
-}
-
-function severityColor(totalScore){
-  if (totalScore <= 4) return "var(--bad)";
-  if (totalScore <= 8) return "var(--warn)";
-  return "var(--good)";
-}
-
-function showGate(){
-  document.getElementById("screen-quiz").hidden = true;
-  document.getElementById("screen-gate").hidden = false;
-  document.getElementById("stepReadout").textContent = "DIAGNÓSTICO LISTO";
-
-  const result = computeDiagnosis();
-  window._lastResult = result;
-
-  document.getElementById("gateStripe").style.background = severityColor(result.totalScore);
-  document.getElementById("gateStagePill").textContent = "Cuello de botella: " + STAGES[result.bottleneck].label;
-  document.getElementById("gateTeaserText").textContent = diagnosisCopy(result.bottleneck, result.totalScore);
-}
-
-function revealResults(usedGateData){
-  if (usedGateData){
-    gateData.name = document.getElementById("gName").value.trim();
-    gateData.biz = document.getElementById("gBiz").value.trim();
-    gateData.whatsapp = document.getElementById("gWhatsapp").value.trim();
-  }
-  document.getElementById("screen-gate").hidden = true;
-  document.getElementById("screen-results").hidden = false;
-  document.getElementById("stepReadout").textContent = "DIAGNÓSTICO";
-  renderResults();
-}
-
-function renderResults(){
-  const r = window._lastResult;
-  const bottleneck = r.bottleneck;
-  const stageScores = r.stageScores;
-  const stageOrder = r.stageOrder;
-
-  document.getElementById("stagePill").textContent = "Cuello de botella: " + STAGES[bottleneck].label;
-  const bizLabel = gateData.biz ? gateData.biz.split(",")[0] : "";
-  document.getElementById("resultHeadline").textContent = bizLabel
-    ? "A " + bizLabel + " le falta " + STAGES[bottleneck].label.toLowerCase()
-    : "A tus redes les falta " + STAGES[bottleneck].label.toLowerCase();
-  document.getElementById("resultDiagnosis").textContent = diagnosisCopy(bottleneck, r.totalScore);
-
-  document.getElementById("severityStripe").style.background = severityColor(r.totalScore);
-
-  const readout = document.getElementById("readout");
-  readout.innerHTML = stageOrder.map(s =>
-    '<div><span>' + STAGES[s].label + '</span><span class="val">' + stageScores[s] + ' / 3</span></div>'
-  ).join("");
-
-  const rec = r.rec;
-  const recCard = document.getElementById("recCard");
-  recCard.className = "rec-card level-" + rec.level;
-  document.getElementById("recLevel").textContent = rec.levelLabel;
-  document.getElementById("recTitle").textContent = rec.title;
-  document.getElementById("recBody").textContent = rec.body;
-  document.getElementById("recPrice").textContent = rec.price;
-
-  const tipsList = document.getElementById("tipsList");
-  if (rec.level === "none"){
-    tipsList.hidden = false;
-    tipsList.innerHTML = tipsFor(bottleneck).map(t => "<li>"+t+"</li>").join("");
-  } else {
-    tipsList.hidden = true;
-  }
-
-  document.getElementById("ctaRow").hidden = false;
-  document.getElementById("contactForm").hidden = true;
-  document.getElementById("declineMsg").hidden = true;
-}
-
-function diagnosisCopy(bottleneck, totalScore){
-  const map = {
-    conexion: "La gente pasa por tu perfil y no se queda, porque no alcanza a entender quién eres ni por qué tú y no otro negocio parecido. Antes de pensar en vender más, hace falta que se note tu identidad.",
-    educacion: "Publicas, pero no estás resolviendo la duda real de quien todavía no te conoce: ¿de verdad sabes lo que haces? Ahí es donde se pierde la confianza antes de que alguien te escriba.",
-    conversion: "Estás generando interés, la gente llega hasta ti, pero se te va justo antes de convertirse en cliente porque no hay un siguiente paso claro o nadie contesta a tiempo.",
-    transformacion: "Tienes clientes que ya te recomendarían, pero eso no se ve en ningún lado. Sin esa prueba, cada prospecto nuevo tiene que confiar a ciegas."
-  };
-  return map[bottleneck];
-}
-
-function tipsFor(bottleneck){
-  const map = {
-    conexion: [
-      "Escribe en tu biografía, en una frase, a quién ayudas y con qué.",
-      "Sube una historia esta semana contando por qué empezaste el negocio.",
-      "Revisa tus últimas 9 publicaciones: si alguien más las pudo haber hecho, cámbiales el enfoque."
-    ],
-    educacion: [
-      "Elige tu pregunta más repetida en mensajes y contéstala en un video corto.",
-      "Muestra el proceso de cómo resuelves un caso típico, paso por paso.",
-      "Deja de publicar solo tips genéricos, amárralos siempre a un caso real tuyo."
-    ],
-    conversion: [
-      "Pon un solo llamado a la acción claro en cada publicación, no varios.",
-      "Define quién contesta los mensajes y en cuánto tiempo máximo.",
-      "Ten una respuesta lista para cuando alguien pregunte precio o disponibilidad."
-    ],
-    transformacion: [
-      "Pide a tu último cliente contento un audio o mensaje de dos líneas y publícalo.",
-      "Cuenta el antes y después de un caso real, aunque sea sencillo.",
-      "Guarda cada buen comentario que te dejen y conviértelo en contenido."
-    ]
-  };
-  return map[bottleneck];
-}
-
-function recommend(involucramiento, presupuesto, tiempo){
-  const desiredMap = {a:"gestionado", b:"guiado", c:"guiado", d:"none"};
-  let level = desiredMap[involucramiento];
-
-  if (level === "gestionado" && presupuesto !== "d"){
-    level = (presupuesto === "c") ? "guiado" : "none";
-  }
-  if (level === "guiado" && !(presupuesto === "c" || presupuesto === "d")){
-    level = "none";
-  }
-
-  const content = {
-    gestionado: {
-      levelLabel:"Recomendación · Gestionado",
-      title:"Te conviene que Merkha maneje esto por ti",
-      body:"Dijiste que no quieres meterte en el día a día. Con Gestionado, Merkha publica, responde mensajes y te entrega los leads listos para cerrar.",
-      price:"Desde $15,000 MXN/mes · ajusta según tu diagnóstico real."
-    },
-    guiado: {
-      levelLabel:"Recomendación · Guiado",
-      title:"Guiado es tu mejor punto de partida",
-      body:"Quieres seguir involucrado, pero con estructura y guía real detrás. En Guiado tú grabas y respondes, y Merkha organiza, guioniza y te dice exactamente qué publicar cada semana.",
-      price:"Desde $10,500 MXN/mes · ajusta según tu diagnóstico real."
-    },
-    none: {
-      levelLabel:"Recomendación",
-      title:"Por ahora no necesitas un Community Manager",
-      body:tiempo === "a"
-        ? "Dijiste que prefieres hacerlo tú, aunque también marcaste que casi no tienes tiempo real para esto. Aquí van tus recomendaciones de todas formas. Si en unas semanas el tiempo sigue sin aparecer, Guiado te da estructura sin quitarte el control."
-        : "Con lo que cuentas hoy, esto lo puedes resolver tú mismo. Aquí van 3 acciones concretas para tu cuello de botella.",
-      price:""
-    }
-  };
-
-  const c = content[level];
-  return {level, levelLabel:c.levelLabel, title:c.title, body:c.body, price:c.price};
-}
-
-function openContactForm(mode){
-  contactMode = mode;
-  document.getElementById("ctaRow").hidden = true;
-  document.getElementById("contactForm").hidden = false;
-
-  document.getElementById("fName").value = gateData.name || "";
-  document.getElementById("fBiz").value = gateData.biz || "";
-  document.getElementById("fContact").value = gateData.whatsapp || "";
-
-  document.getElementById("sendWaBtn").textContent = mode === "ya"
-    ? "Enviar por WhatsApp →"
-    : "Mandarme mi diagnóstico por WhatsApp →";
-
-  const isPlaceholder = MERKHA_WHATSAPP_NUMBER.indexOf("X") !== -1;
-  document.getElementById("waNote").hidden = !isPlaceholder;
-}
-
-function declineContact(){
-  document.getElementById("ctaRow").hidden = true;
-  document.getElementById("declineMsg").hidden = false;
-}
-
-function sendWhatsApp(){
-  const name = document.getElementById("fName").value.trim() || "(sin nombre)";
-  const biz = document.getElementById("fBiz").value.trim() || "(sin negocio)";
-  const contact = document.getElementById("fContact").value.trim() || "(sin dato de contacto)";
-  const r = window._lastResult;
-  const stageLabel = STAGES[r.bottleneck].label;
-
-  const opening = contactMode === "ya"
-    ? "Hola, hice la Radiografía de Negocio y quiero resolver esto ya. Contáctenme."
-    : "Hola, hice la Radiografía de Negocio. Todavía no busco que me contacten, quería mi diagnóstico por escrito para pensarlo.";
-
-  const lines = [
-    opening,
-    "",
-    "Nombre: " + name,
-    "Negocio: " + biz,
-    "Contacto: " + contact,
-    "",
-    "Cuello de botella detectado: " + stageLabel,
-    "Puntaje por etapa: Conexión " + r.stageScores.conexion + "/3, Educación " + r.stageScores.educacion + "/3, Conversión " + r.stageScores.conversion + "/3, Transformación " + r.stageScores.transformacion + "/3",
-    "Recomendación: " + r.rec.title
-  ];
-  const text = encodeURIComponent(lines.join("\n"));
-  const url = "https://wa.me/" + MERKHA_WHATSAPP_NUMBER.replace(/\D/g,"") + "?text=" + text;
-  const win = window.open(url, "_blank");
-  if (!win) window.location.href = url;
-}
+});
 </script>
 
+</body>
 </html>
