@@ -1,6 +1,24 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Radiografía de Negocio</title>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1596254005109607');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1596254005109607&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=Bodoni+Moda:ital,wght@1,600&display=swap">
@@ -1015,6 +1033,27 @@ function sendWhatsApp(){
   const win = window.open(url, "_blank");
   if (!win) window.location.href = url;
 }
+</script>
+
+
+<!-- Eventos Meta Pixel -->
+<script>
+(function(){
+  var _start = window.startQuiz, _reveal = window.revealResults, _send = window.sendWhatsApp;
+  window.startQuiz = function(){
+    fbq("trackCustom", "IniciaDiagnostico");
+    return _start.apply(this, arguments);
+  };
+  window.revealResults = function(usedGateData){
+    fbq("trackCustom", "DiagnosticoCompletado", {con_datos: !!usedGateData});
+    if (usedGateData) fbq("track", "Lead", {content_name: "Radiografia de Negocio"});
+    return _reveal.apply(this, arguments);
+  };
+  window.sendWhatsApp = function(){
+    fbq("track", "Contact", {content_name: "Radiografia de Negocio", modo: (typeof contactMode !== "undefined" ? contactMode : "")});
+    return _send.apply(this, arguments);
+  };
+})();
 </script>
 
 </html>
