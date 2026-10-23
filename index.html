@@ -347,6 +347,14 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
 }
 .rec-card.level-none{background:color-mix(in srgb, var(--good) 10%, var(--paper-raised));}
 .rec-card.level-guiado{background:color-mix(in srgb, var(--accent) 18%, var(--paper-raised));}
+.proof{font-size:13px;line-height:1.5;color:var(--ink-soft);border-left:3px solid var(--butter);padding:4px 0 4px 12px;margin:0 0 16px;}
+.copy-box{background:var(--paper-raised);border:1.5px dashed var(--accent);border-radius:16px;padding:18px;margin:18px 0;}
+.copy-label{font-size:13px;font-weight:600;color:var(--ink-soft);margin:0 0 8px;}
+.copy-text{font-size:15px;line-height:1.55;color:var(--ink);white-space:pre-wrap;margin:0 0 14px;}
+.copy-btn{width:auto;padding:10px 18px;font-size:14px;}
+.tips-title{font-weight:700;font-size:15px;margin:22px 0 4px;color:var(--ink);}
+.rec-card.level-kit{background:var(--paper-raised);border:1px solid var(--line);margin-top:16px;}
+.kit-btn{display:inline-block;text-decoration:none;margin-top:6px;}
 .rec-card.level-gestionado{background:color-mix(in srgb, var(--butter) 34%, var(--paper-raised));}
 .rec-level{
   font-size:12px;
@@ -545,12 +553,12 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
   <div class="card cover" id="screen-intro">
     <span class="cover-star" style="width:22px;height:22px;top:22px;right:26px"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg></span>
     <span class="cover-star" style="width:14px;height:14px;top:58px;right:62px"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg></span>
-    <p class="eyebrow">Diagnóstico gratuito · 2 minutos</p>
+    <p class="eyebrow">Diagnóstico gratuito · 3 minutos</p>
     <h1>Radiografía de <b>Negocio</b></h1>
-    <p class="lede">7 preguntas sobre cómo está tu presencia en redes hoy. Al final sabes exactamente qué le falta a tu negocio para conseguir clientes desde ahí, y si eso te conviene resolverlo tú o con ayuda. Tú decides al final si quieres que te contactemos, aquí nadie te va a perseguir.</p>
+    <p class="lede">9 preguntas para saber en qué momento pierdes al cliente por WhatsApp, qué contestarle y si ya es momento de delegar tus redes o te conviene resolverlo tú. Te llevas un mensaje listo para copiar. Tú decides al final si quieres que te contactemos, aquí nadie te va a perseguir.</p>
     <button class="start-btn" onclick="startQuiz()">Empezar diagnóstico →</button>
     <div class="meta-row">
-      <div class="meta-item">Sin registro</div>
+      <div class="meta-item">Gratis</div>
       <div class="meta-item">Resultado inmediato</div>
       <div class="meta-item">Tú decides si te contactamos</div>
     </div>
@@ -574,7 +582,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
     <h1>Tu radiografía <span class="sel">ya está lista</span></h1>
     <div class="teaser-block">
       <p class="teaser-text" id="gateTeaserText"></p>
-      <div class="teaser-lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Se desbloquea abajo</div>
+      <div class="teaser-lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Déjanos tus datos para verlo</div>
     </div>
     <div class="gate-form">
       <div class="field">
@@ -589,7 +597,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
         <label for="gWhatsapp">Tu WhatsApp</label>
         <input id="gWhatsapp" type="text" placeholder="Ej. 55 1234 5678">
       </div>
-      <p class="gate-hint">Es para personalizar tu resultado y para que, si quieres, puedas mandarlo por WhatsApp con un clic. No te contactamos sin que tú des enviar.</p>
+      <p class="gate-hint">Con el nombre de tu negocio te armamos el mensaje listo para copiar. No te contactamos sin que tú des enviar.</p>
       <button class="primary-btn" onclick="revealResults(true)">Ver mi radiografía completa →</button>
     </div>
     <button class="skip-link" onclick="revealResults(false)">Prefiero verla sin dejar mis datos</button>
@@ -601,8 +609,18 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
     <p class="stage-pill" id="stagePill"></p>
     <h1 id="resultHeadline"></h1>
     <p class="lede" id="resultDiagnosis"></p>
+    <p class="proof" id="resultProof" hidden>Un estudio de Harvard Business Review con más de un millón de contactos encontró que las empresas que contestaban en menos de una hora tenían casi 7 veces más probabilidad de convertir ese mensaje en un cliente potencial que las que tardaban más. (Oldroyd, McElheran y Elkington, 2011)</p>
 
     <div class="readout" id="readout"></div>
+
+    <div class="copy-box">
+      <p class="copy-label" id="copyLabel"></p>
+      <p class="copy-text" id="copyText"></p>
+      <button class="ghost-btn copy-btn" id="copyBtn" type="button" onclick="copyTemplate()">Copiar mensaje</button>
+    </div>
+
+    <p class="tips-title">3 acciones para esta semana</p>
+    <ul class="tips" id="tipsList"></ul>
 
     <div class="rec-card" id="recCard">
       <p class="rec-level" id="recLevel"></p>
@@ -611,11 +629,19 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
       <p class="rec-price" id="recPrice"></p>
     </div>
 
-    <ul class="tips" id="tipsList" hidden></ul>
+
+    <!-- Kit VISTO: se muestra solo si KIT_VISTO_ACTIVO = true y hay link -->
+    <div class="rec-card level-kit" id="kitCard" hidden>
+      <p class="rec-level">Para empezar hoy</p>
+      <h3 class="rec-title">Kit VISTO</h3>
+      <p class="rec-body">La guía y el asistente para contestar por WhatsApp sin que te dejen en visto y dar seguimiento sin sonar insistente.</p>
+      <p class="rec-price">$349 MXN · pago único</p>
+      <a class="primary-btn kit-btn" id="kitBtn" href="#" target="_blank" rel="noopener">Quiero el Kit VISTO →</a>
+    </div>
 
     <div class="cta-stack" id="ctaRow">
       <button class="primary-btn" id="yesBtn" onclick="openContactForm('ya')">Sí, quiero resolver esto ya</button>
-      <button class="ghost-btn" id="noBtn" onclick="openContactForm('luego')">Quiero pensarlo, mándame mi diagnóstico por WhatsApp</button>
+      <button class="ghost-btn" id="noBtn" onclick="openContactForm('luego')">Mándale mi diagnóstico a Merkha para platicarlo después</button>
       <button class="decline-link" onclick="declineContact()">Cerrar sin enviar nada</button>
     </div>
 
@@ -628,12 +654,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
         <label for="fBiz">Nombre de tu negocio</label>
         <input id="fBiz" type="text" placeholder="Ej. Taller Salinas">
       </div>
-      <div class="field">
-        <label for="fContact">Tu WhatsApp o Instagram</label>
-        <input id="fContact" type="text" placeholder="Ej. 55 1234 5678 o @tallersalinas">
-      </div>
       <button class="primary-btn" id="sendWaBtn" onclick="sendWhatsApp()">Enviar por WhatsApp →</button>
-      <p class="wa-note" id="waNote" hidden>Número de WhatsApp de Merkha pendiente de configurar (placeholder de demo).</p>
     </div>
 
     <div id="declineMsg" hidden>
@@ -649,87 +670,134 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
 // ---- CONFIG (placeholder, pendiente de dato real) ----
 const MERKHA_WHATSAPP_NUMBER = "524461447931"; // WhatsApp de Merkha: +52 446 144 79 31
 
-const STAGES = {
-  conexion: {label:"Conexión", short:"te ven pero no te distinguen"},
-  educacion: {label:"Educación", short:"dudan si sabes resolver su problema"},
-  conversion: {label:"Conversión", short:"se interesan pero no dan el siguiente paso"},
-  transformacion: {label:"Transformación", short:"no ven pruebas de que ya ayudaste a alguien"}
+// Kit VISTO: apagado hasta que exista el link de Hotmart. Para prenderlo: KIT_VISTO_ACTIVO = true y pegar el link.
+const KIT_VISTO_ACTIVO = false;
+const KIT_VISTO_URL = "";
+
+// Causas del visto que detecta el test
+const CAUSES = {
+  lenta: {label:"Respuesta lenta", headline:"llegas tarde a la conversación", soft:"en la velocidad para contestar"},
+  precio: {label:"Precio sin contexto", headline:"das el precio sin contexto", soft:"en cómo das el precio"},
+  seguimiento: {label:"Cero seguimiento", headline:"nadie les vuelve a escribir", soft:"en el seguimiento"},
+  frio: {label:"Llegan en frío", headline:"te escriben sin conocerte", soft:"antes de que te escriban"}
 };
 
+// Pregunta encuesta: en qué momento dejan más en visto
+const MOMENTS = {
+  primer: "desde el primer mensaje",
+  precio: "después de darles el precio o la información",
+  seguimiento: "cuando les vuelves a escribir",
+  pocos: "casi no te escriben, y los pocos que lo hacen preguntan precio y se van"
+};
+const MOMENT_INTRO = {
+  primer: "Dijiste que te dejan en visto sobre todo desde el primer mensaje. ",
+  precio: "Dijiste que te dejan en visto sobre todo después de darles el precio o la información. ",
+  seguimiento: "Dijiste que te dejan en visto sobre todo cuando les vuelves a escribir. ",
+  pocos: "Dijiste que casi no te escriben, y que los pocos que lo hacen preguntan precio y se van. "
+};
+const MOMENT_CAUSE = {primer:"lenta", precio:"precio", seguimiento:"seguimiento", pocos:"frio"};
+
+const VOLUMEN_TXT = {
+  a: "Menos de 5 a la semana",
+  b: "Entre 5 y 15 a la semana",
+  c: "Entre 15 y 40 a la semana",
+  d: "Más de 40 a la semana"
+};
+
+// Las preguntas con "shuffle" revuelven el orden de sus opciones para que no haya una respuesta obvia
 const QUESTIONS = [
   {
-    stage:"conexion",
-    eyebrow:"Pregunta 1 de 7 · Primera impresión",
-    title:"Si un cliente nuevo llega hoy a tu perfil por primera vez, ¿qué se va a encontrar?",
+    key:"momento",
+    eyebrow:"El visto",
+    title:"¿En qué momento te dejan más en visto?",
     options:[
-      {t:"Una cuenta que casi no se actualiza o que no dice mucho de quiénes somos.", v:0},
-      {t:"Contenido, pero se parece al de cualquier otro negocio del mismo giro.", v:1},
-      {t:"Ya se nota nuestro estilo y lo que nos hace distintos, aunque no siempre.", v:2},
-      {t:"Cualquiera que entra sabe exactamente quiénes somos y por qué elegirnos.", v:3}
+      {t:"Desde el primer mensaje: preguntan \"info\", les contesto y ya no responden.", v:"primer"},
+      {t:"Después de darles el precio o mandarles la información.", v:"precio"},
+      {t:"Cuando les vuelvo a escribir para darles seguimiento.", v:"seguimiento"},
+      {t:"Casi no me escriben, y los pocos que escriben preguntan precio y se van.", v:"pocos"}
     ]
   },
   {
-    stage:"educacion",
-    eyebrow:"Pregunta 2 de 7 · Confianza",
-    title:"Cuando alguien duda si contratarte o no, ¿tu contenido responde esa duda?",
+    cause:"lenta", shuffle:true,
+    eyebrow:"Velocidad",
+    title:"Cuando alguien te escribe preguntando por lo que vendes, ¿en cuánto tiempo le contestas normalmente?",
     options:[
-      {t:"No, casi no explicamos cómo resolvemos el problema del cliente.", v:0},
-      {t:"Publicamos tips o consejos, pero sin conectarlos con lo que vendemos.", v:1},
-      {t:"A veces mostramos cómo trabajamos, pero no es constante.", v:2},
-      {t:"Constantemente mostramos cómo ayudamos y por qué sabemos del tema.", v:3}
+      {t:"Cuando me desocupo, a veces hasta el día siguiente.", v:0},
+      {t:"Unas horas después, cuando tengo un rato libre.", v:1},
+      {t:"En menos de una hora, casi siempre.", v:2},
+      {t:"En minutos, o le llega un aviso de cuándo contesto.", v:3}
     ]
   },
   {
-    stage:"conversion",
-    eyebrow:"Pregunta 3 de 7 · El momento del contacto",
-    title:"Cuando alguien te escribe interesado, ¿qué pasa después?",
+    cause:"precio", shuffle:true,
+    eyebrow:"La respuesta",
+    title:"Cuando te preguntan \"¿precio?\" o \"info\", ¿qué les contestas?",
     options:[
-      {t:"Muchas veces ni siquiera contestamos a tiempo.", v:0},
-      {t:"Contestamos, pero no hay un siguiente paso claro (agendar, cotizar, comprar).", v:1},
-      {t:"Tenemos un proceso, pero se nos escapan varios en el camino.", v:2},
-      {t:"Tenemos un proceso claro y la mayoría no se nos va.", v:3}
+      {t:"Les mando el precio directo.", v:0},
+      {t:"Les mando toda la información y los precios juntos.", v:1},
+      {t:"Les pregunto qué buscan y luego les doy el precio.", v:2},
+      {t:"Les pregunto qué buscan, les doy precio y les propongo fecha.", v:3}
     ]
   },
   {
-    stage:"transformacion",
-    eyebrow:"Pregunta 4 de 7 · Prueba real",
-    title:"¿Qué tanto se nota en tus redes que ya tienes clientes contentos?",
+    cause:"seguimiento", shuffle:true,
+    eyebrow:"Seguimiento",
+    title:"Si alguien te deja en visto, ¿qué haces?",
     options:[
-      {t:"Nada, no mostramos resultados ni testimonios.", v:0},
-      {t:"Tenemos casos buenos, pero no los hemos publicado.", v:1},
-      {t:"Publicamos alguno de vez en cuando.", v:2},
-      {t:"Es parte constante de lo que publicamos.", v:3}
+      {t:"Nada, si le interesa me vuelve a escribir.", v:0},
+      {t:"Le pregunto una vez si sigue interesado.", v:1},
+      {t:"Le escribo de vez en cuando, sin un orden fijo.", v:2},
+      {t:"Le escribo otra vez a los pocos días con algo nuevo.", v:3}
     ]
   },
   {
-    stage:null,
+    cause:"frio", shuffle:true,
+    eyebrow:"Antes del mensaje",
+    title:"La gente que te escribe, ¿qué tanto sabe de ti antes de escribirte?",
+    options:[
+      {t:"Nada, lo primero que preguntan es el precio.", v:0},
+      {t:"Algo, pero me comparan con otros por precio.", v:1},
+      {t:"Algunos vienen recomendados o vieron mis publicaciones.", v:2},
+      {t:"La mayoría ya sabe qué hago y más o menos cuánto cuesta.", v:3}
+    ]
+  },
+  {
+    key:"volumen",
+    eyebrow:"Volumen",
+    title:"¿Cuántas personas te escriben a la semana preguntando por tu producto o servicio?",
+    options:[
+      {t:"Menos de 5.", v:"a"},
+      {t:"Entre 5 y 15.", v:"b"},
+      {t:"Entre 15 y 40.", v:"c"},
+      {t:"Más de 40.", v:"d"}
+    ]
+  },
+  {
     key:"tiempo",
-    eyebrow:"Pregunta 5 de 7 · Realidad operativa",
-    title:"¿Cuánto tiempo le dedican de verdad a crear y publicar contenido al mes?",
+    eyebrow:"Tu tiempo",
+    title:"¿Cuántas horas a la semana le puedes dar de verdad a tus redes y mensajes?",
     options:[
-      {t:"Casi nada, se hace cuando se puede.", v:"a"},
-      {t:"Unas horas sueltas, sin plan.", v:"b"},
-      {t:"Tenemos tiempo pero no sabemos bien qué publicar.", v:"c"},
-      {t:"Tenemos tiempo y plan, solo falta quien ejecute.", v:"d"}
+      {t:"Menos de 1 hora.", v:"a"},
+      {t:"De 1 a 3 horas.", v:"b"},
+      {t:"De 3 a 6 horas.", v:"c"},
+      {t:"Más de 6 horas.", v:"d"}
     ]
   },
   {
-    stage:null,
     key:"involucramiento",
-    eyebrow:"Pregunta 6 de 7 · Cómo te quieres involucrar",
-    title:"¿Cómo te gustaría estar involucrado en tus redes de aquí en adelante?",
+    eyebrow:"Cómo quieres participar",
+    title:"¿Cómo quieres participar en tus redes de aquí en adelante?",
     options:[
       {t:"Quiero delegarlo todo, no tengo tiempo ni ganas de meterme en el día a día.", v:"a"},
       {t:"Quiero aportar lo mío (grabar, dar ideas) pero que alguien más lo organice y publique.", v:"b"},
-      {t:"Quiero aprender a hacerlo yo mismo, con guía.", v:"c"},
+      {t:"Quiero aprender a hacerlo yo, con alguien que me guíe.", v:"c"},
       {t:"Prefiero hacerlo todo yo, solo quería un diagnóstico honesto.", v:"d"}
     ]
   },
   {
-    stage:null,
     key:"presupuesto",
-    eyebrow:"Pregunta 7 de 7 · Presupuesto",
-    title:"¿Cuánto presupuesto mensual tienen disponible para esto, sin contar pauta publicitaria?",
+    eyebrow:"Presupuesto",
+    title:"¿Cuánto podrías invertir al mes en esto, sin contar anuncios pagados?",
     options:[
       {t:"Menos de $5,000 MXN.", v:"a"},
       {t:"Entre $5,000 y $10,000 MXN.", v:"b"},
@@ -741,10 +809,25 @@ const QUESTIONS = [
 
 let current = 0;
 let answers = new Array(QUESTIONS.length).fill(null);
+let optionOrder = [];
 let gateData = {name:"", biz:"", whatsapp:""};
 let contactMode = "ya";
 
+function shuffled(n){
+  const a = Array.from({length:n}, (_, i) => i);
+  for (let i = n - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function buildOrder(){
+  optionOrder = QUESTIONS.map(q => q.shuffle ? shuffled(q.options.length) : q.options.map((_, i) => i));
+}
+
 function startQuiz(){
+  buildOrder();
   document.getElementById("screen-intro").hidden = true;
   document.getElementById("screen-quiz").hidden = false;
   renderQuestion();
@@ -752,16 +835,17 @@ function startQuiz(){
 
 function renderQuestion(){
   const q = QUESTIONS[current];
-  document.getElementById("quizEyebrow").textContent = q.eyebrow;
+  document.getElementById("quizEyebrow").textContent = "Pregunta " + (current+1) + " de " + QUESTIONS.length + " · " + q.eyebrow;
   document.getElementById("qtitle").textContent = q.title;
   const optWrap = document.getElementById("qoptions");
   optWrap.innerHTML = "";
-  q.options.forEach((opt, i) => {
+  optionOrder[current].forEach((optIndex, pos) => {
+    const opt = q.options[optIndex];
     const btn = document.createElement("button");
-    btn.className = "opt" + (answers[current] === i ? " selected" : "");
+    btn.className = "opt" + (answers[current] === optIndex ? " selected" : "");
     btn.type = "button";
-    btn.innerHTML = '<span class="opt-letter">' + String.fromCharCode(65+i) + '</span><span>' + opt.t + '</span>';
-    btn.onclick = () => selectOption(i);
+    btn.innerHTML = '<span class="opt-letter">' + String.fromCharCode(65+pos) + '</span><span>' + opt.t + '</span>';
+    btn.onclick = () => selectOption(optIndex);
     optWrap.appendChild(btn);
   });
   document.getElementById("backBtn").disabled = current === 0;
@@ -778,7 +862,7 @@ function selectOption(i){
 function updateProgress(){
   const pct = Math.round(((current) / QUESTIONS.length) * 100);
   document.getElementById("scanFill").style.width = pct + "%";
-  document.getElementById("stepReadout").textContent = "PASO " + (current+1) + "/" + QUESTIONS.length;
+  document.getElementById("stepReadout").textContent = "";
 }
 
 function goNext(){
@@ -803,45 +887,64 @@ function resetQuiz(){
   answers = new Array(QUESTIONS.length).fill(null);
   gateData = {name:"", biz:"", whatsapp:""};
   contactMode = "ya";
-  document.getElementById("gName").value = "";
-  document.getElementById("gBiz").value = "";
-  document.getElementById("gWhatsapp").value = "";
+  ["gName","gBiz","gWhatsapp","fName","fBiz"].forEach(id => { document.getElementById(id).value = ""; });
   document.getElementById("screen-gate").hidden = true;
   document.getElementById("screen-results").hidden = true;
   document.getElementById("screen-intro").hidden = false;
   document.getElementById("contactForm").hidden = true;
   document.getElementById("declineMsg").hidden = true;
   document.getElementById("ctaRow").hidden = false;
-  document.getElementById("tipsList").hidden = true;
+  document.getElementById("kitCard").hidden = true;
   document.getElementById("scanFill").style.width = "0%";
   document.getElementById("stepReadout").textContent = "";
 }
 
+function answerOf(key){
+  const i = QUESTIONS.findIndex(q => q.key === key);
+  return QUESTIONS[i].options[answers[i]].v;
+}
+
 function computeDiagnosis(){
-  const stageScores = {conexion:0, educacion:0, conversion:0, transformacion:0};
+  const causeScores = {};
   QUESTIONS.forEach((q, i) => {
-    if (q.stage){
-      stageScores[q.stage] = q.options[answers[i]].v;
-    }
+    if (q.cause) causeScores[q.cause] = q.options[answers[i]].v;
   });
 
-  const tiempo = QUESTIONS[4].options[answers[4]].v;
-  const involucramiento = QUESTIONS[5].options[answers[5]].v;
-  const presupuesto = QUESTIONS[6].options[answers[6]].v;
+  const momento = answerOf("momento");
+  const volumen = answerOf("volumen");
+  const tiempo = answerOf("tiempo");
+  const involucramiento = answerOf("involucramiento");
+  const presupuesto = answerOf("presupuesto");
 
-  const stageOrder = ["conexion","educacion","conversion","transformacion"];
-  let bottleneck = stageOrder[0];
-  stageOrder.forEach(s => { if (stageScores[s] < stageScores[bottleneck]) bottleneck = s; });
-  const totalScore = stageOrder.reduce((a,s)=>a+stageScores[s],0); // 0-12
+  // La causa principal es la de menor puntaje. El momento del visto, y que casi no le escriban,
+  // pesan medio punto cada uno para desempatar hacia la causa que más se les relaciona.
+  const causeOrder = ["lenta","precio","seguimiento","frio"];
+  const weighted = c => causeScores[c]
+    - (MOMENT_CAUSE[momento] === c ? 0.5 : 0)
+    - (volumen === "a" && c === "frio" ? 0.5 : 0);
+  let mainCause = causeOrder[0];
+  causeOrder.forEach(c => { if (weighted(c) < weighted(mainCause)) mainCause = c; });
+  const minScore = causeScores[mainCause];
+  // Si todo está bien hecho en los mensajes, el problema viene de afuera: poca gente o gente que no era para él
+  const allGood = minScore === 3;
+  if (allGood) mainCause = "frio";
+  const totalScore = causeOrder.reduce((a,c)=>a+causeScores[c],0); // 0-12
 
-  const rec = recommend(involucramiento, presupuesto, tiempo);
-  return {bottleneck, stageScores, totalScore, rec, stageOrder};
+  // Ya no da abasto: muchos mensajes, o bastantes y además contesta lento o tiene poco tiempo
+  const saturado = volumen === "d" || (volumen === "c" && (causeScores.lenta <= 1 || tiempo === "a" || tiempo === "b"));
+
+  const rec = recommend({involucramiento, presupuesto, tiempo, volumen, saturado, mainCause});
+  return {mainCause, minScore, allGood, causeScores, totalScore, rec, causeOrder, momento, volumen, saturado};
 }
 
 function severityColor(totalScore){
   if (totalScore <= 4) return "var(--bad)";
   if (totalScore <= 8) return "var(--warn)";
   return "var(--good)";
+}
+
+function pillText(r){
+  return r.allGood ? "Tus mensajes van bien" : "Por qué te dejan en visto: " + CAUSES[r.mainCause].label;
 }
 
 function showGate(){
@@ -853,8 +956,12 @@ function showGate(){
   window._lastResult = result;
 
   document.getElementById("gateStripe").style.background = severityColor(result.totalScore);
-  document.getElementById("gateStagePill").textContent = "Cuello de botella: " + STAGES[result.bottleneck].label;
-  document.getElementById("gateTeaserText").textContent = diagnosisCopy(result.bottleneck, result.totalScore);
+  document.getElementById("gateStagePill").textContent = pillText(result);
+  document.getElementById("gateTeaserText").textContent = diagnosisCopy(result);
+}
+
+function whatsappDigits(){
+  return document.getElementById("gWhatsapp").value.replace(/\D/g, "");
 }
 
 function revealResults(usedGateData){
@@ -869,25 +976,41 @@ function revealResults(usedGateData){
   renderResults();
 }
 
+function headlineFor(r){
+  const biz = gateData.biz ? gateData.biz.split(",")[0] : "";
+  if (r.allGood) return biz ? "En " + biz + " los mensajes van bien" : "Tus mensajes van bien";
+  if (r.minScore === 2) return "Vas bien. Donde más clientes se te pueden ir es " + CAUSES[r.mainCause].soft;
+  return biz
+    ? "En " + biz + " te dejan en visto porque " + CAUSES[r.mainCause].headline
+    : "Te dejan en visto porque " + CAUSES[r.mainCause].headline;
+}
+
 function renderResults(){
   const r = window._lastResult;
-  const bottleneck = r.bottleneck;
-  const stageScores = r.stageScores;
-  const stageOrder = r.stageOrder;
+  const cause = r.mainCause;
 
-  document.getElementById("stagePill").textContent = "Cuello de botella: " + STAGES[bottleneck].label;
-  const bizLabel = gateData.biz ? gateData.biz.split(",")[0] : "";
-  document.getElementById("resultHeadline").textContent = bizLabel
-    ? "A " + bizLabel + " le falta " + STAGES[bottleneck].label.toLowerCase()
-    : "A tus redes les falta " + STAGES[bottleneck].label.toLowerCase();
-  document.getElementById("resultDiagnosis").textContent = diagnosisCopy(bottleneck, r.totalScore);
+  document.getElementById("stagePill").textContent = pillText(r);
+  document.getElementById("resultHeadline").textContent = headlineFor(r);
+  document.getElementById("resultDiagnosis").textContent = diagnosisCopy(r);
+
+  const proof = document.getElementById("resultProof");
+  proof.hidden = cause !== "lenta" || r.allGood;
 
   document.getElementById("severityStripe").style.background = severityColor(r.totalScore);
 
   const readout = document.getElementById("readout");
-  readout.innerHTML = stageOrder.map(s =>
-    '<div><span>' + STAGES[s].label + '</span><span class="val">' + stageScores[s] + ' / 3</span></div>'
-  ).join("");
+  readout.innerHTML = '<div><span><b>Cómo saliste en cada punto</b></span><span></span></div>' +
+    r.causeOrder.map(c =>
+      '<div><span>' + CAUSES[c].label + '</span><span class="val">' + r.causeScores[c] + ' / 3</span></div>'
+    ).join("");
+
+  // Mensaje listo para copiar, para todos sin importar el veredicto
+  const tpl = templateFor(cause);
+  document.getElementById("copyLabel").textContent = tpl.label;
+  document.getElementById("copyText").textContent = tpl.text;
+  document.getElementById("copyBtn").textContent = "Copiar mensaje";
+
+  document.getElementById("tipsList").innerHTML = tipsFor(cause).map(t => "<li>"+t+"</li>").join("");
 
   const rec = r.rec;
   const recCard = document.getElementById("recCard");
@@ -897,85 +1020,161 @@ function renderResults(){
   document.getElementById("recBody").textContent = rec.body;
   document.getElementById("recPrice").textContent = rec.price;
 
-  const tipsList = document.getElementById("tipsList");
-  if (rec.level === "none"){
-    tipsList.hidden = false;
-    tipsList.innerHTML = tipsFor(bottleneck).map(t => "<li>"+t+"</li>").join("");
-  } else {
-    tipsList.hidden = true;
-  }
+  const kitCard = document.getElementById("kitCard");
+  kitCard.hidden = !(rec.level === "none" && KIT_VISTO_ACTIVO && KIT_VISTO_URL);
+  if (KIT_VISTO_URL) document.getElementById("kitBtn").href = KIT_VISTO_URL;
+
+  document.getElementById("yesBtn").textContent = rec.level === "none"
+    ? "Quiero que revisen mi caso gratis"
+    : "Sí, quiero resolver esto ya";
 
   document.getElementById("ctaRow").hidden = false;
   document.getElementById("contactForm").hidden = true;
   document.getElementById("declineMsg").hidden = true;
 }
 
-function diagnosisCopy(bottleneck, totalScore){
+function diagnosisCopy(r){
+  if (r.allGood){
+    return "Contestas rápido, das contexto y vuelves a escribir. Si aun así te dejan en visto, lo más probable es que te escriba poca gente o gente que no era para ti. Ahí lo que cambia las cosas es que te conozcan más personas que sí son para ti antes de escribirte.";
+  }
   const map = {
-    conexion: "La gente pasa por tu perfil y no se queda, porque no alcanza a entender quién eres ni por qué tú y no otro negocio parecido. Antes de pensar en vender más, hace falta que se note tu identidad.",
-    educacion: "Publicas, pero no estás resolviendo la duda real de quien todavía no te conoce: ¿de verdad sabes lo que haces? Ahí es donde se pierde la confianza antes de que alguien te escriba.",
-    conversion: "Estás generando interés, la gente llega hasta ti, pero se te va justo antes de convertirse en cliente porque no hay un siguiente paso claro o nadie contesta a tiempo.",
-    transformacion: "Tienes clientes que ya te recomendarían, pero eso no se ve en ningún lado. Sin esa prueba, cada prospecto nuevo tiene que confiar a ciegas."
+    lenta: "Para cuando contestas, esa persona ya le escribió a otros negocios y se quedó con el primero que le respondió. Ni alcanzaron a ver lo que vendes.",
+    precio: "Cuando lo primero que recibe la persona es un precio o un mensaje enorme con todo, lo único que puede hacer es compararlo con el precio de otro. Y si tu mensaje no termina con una pregunta, la conversación se queda sin siguiente paso y ahí se apaga.",
+    seguimiento: "Mucha gente que te deja en visto sí estaba interesada, solo se distrajo. Si nadie le vuelve a escribir, o le escriben \"¿sigues interesado?\" sin darle una razón para contestar, esa venta se pierde sola.",
+    frio: "Te escriben personas que todavía no saben por qué elegirte, así que lo único que pueden comparar es el precio. El problema empieza antes de que te escriban: tus publicaciones no les están explicando qué haces ni por qué confiar en ti."
   };
-  return map[bottleneck];
+  return MOMENT_INTRO[r.momento] + map[r.mainCause];
 }
 
-function tipsFor(bottleneck){
+function bizName(){
+  const biz = gateData.biz ? gateData.biz.split(",")[0].trim() : "";
+  return biz || "[nombre de tu negocio]";
+}
+
+function templateFor(cause){
   const map = {
-    conexion: [
-      "Escribe en tu biografía, en una frase, a quién ayudas y con qué.",
-      "Sube una historia esta semana contando por qué empezaste el negocio.",
-      "Revisa tus últimas 9 publicaciones: si alguien más las pudo haber hecho, cámbiales el enfoque."
+    lenta: {
+      label:"Mensaje de bienvenida automático. Pégalo en WhatsApp Business, en Herramientas para la empresa > Mensaje de bienvenida:",
+      text:"Hola, gracias por escribir a " + bizName() + ". Ahorita estoy atendiendo y en menos de una hora te contesto. Mientras, cuéntame qué estás buscando y para cuándo lo necesitas."
+    },
+    precio: {
+      label:"La próxima vez que te pregunten precio, contesta esto antes de darlo:",
+      text:"¡Claro! Para darte el precio correcto, cuéntame qué tienes en mente y para qué fecha lo necesitas. Así te digo exactamente qué te conviene."
+    },
+    seguimiento: {
+      label:"Mándalo a quien te dejó en visto hace 2 o 3 días:",
+      text:"Hola, ¿cómo vas? Me acordé de lo que me preguntaste y te comparto una foto de un trabajo parecido que hicimos. Esta semana todavía tengo lugar el jueves o el viernes, ¿cuál te queda mejor?"
+    },
+    frio: {
+      label:"Texto para tu biografía de Instagram. Cambia lo que está entre corchetes:",
+      text:bizName() + " · [Lo que haces] para [a quién] en [tu ciudad]. Desde $[precio]. Escríbenos \"INFO\" y te decimos cómo empezar."
+    }
+  };
+  return map[cause];
+}
+
+function copyTemplate(){
+  const text = document.getElementById("copyText").textContent;
+  const done = () => { document.getElementById("copyBtn").textContent = "Copiado ✓"; };
+  const fallback = () => {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); done(); } catch(e) {}
+    document.body.removeChild(ta);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done, fallback);
+  } else {
+    fallback();
+  }
+}
+
+function tipsFor(cause){
+  const map = {
+    lenta: [
+      "Activa el mensaje de bienvenida automático de arriba en WhatsApp Business.",
+      "Aparta dos o tres horarios fijos al día solo para contestar mensajes.",
+      "Guarda como respuestas rápidas las 5 preguntas que más te hacen."
     ],
-    educacion: [
-      "Elige tu pregunta más repetida en mensajes y contéstala en un video corto.",
-      "Muestra el proceso de cómo resuelves un caso típico, paso por paso.",
-      "Deja de publicar solo tips genéricos, amárralos siempre a un caso real tuyo."
+    precio: [
+      "Antes de dar el precio, pregunta una sola cosa: para qué lo necesita o para cuándo.",
+      "Da el precio junto con lo que incluye, en tres líneas como máximo.",
+      "Termina siempre con una pregunta fácil de contestar: ¿te lo aparto?, ¿qué día te queda?"
     ],
-    conversion: [
-      "Pon un solo llamado a la acción claro en cada publicación, no varios.",
-      "Define quién contesta los mensajes y en cuánto tiempo máximo.",
-      "Ten una respuesta lista para cuando alguien pregunte precio o disponibilidad."
+    seguimiento: [
+      "Vuelve a escribir a los 2 o 3 días y otra vez a la semana. Después de eso, suéltalo.",
+      "Que cada mensaje de seguimiento traiga algo nuevo: una foto, un caso parecido o tu disponibilidad de la semana.",
+      "Lleva una lista sencilla de quién te preguntó y no contestó. Una nota en el celular sirve."
     ],
-    transformacion: [
-      "Pide a tu último cliente contento un audio o mensaje de dos líneas y publícalo.",
-      "Cuenta el antes y después de un caso real, aunque sea sencillo.",
-      "Guarda cada buen comentario que te dejen y conviértelo en contenido."
+    frio: [
+      "Publica las respuestas a las 3 preguntas que más te hacen por mensaje.",
+      "Enseña un trabajo real tuyo con el antes y el después, aunque sea sencillo.",
+      "Pon en tu biografía qué haces, para quién y un rango de precio, para que te escriban ya decididos."
     ]
   };
-  return map[bottleneck];
+  return map[cause];
 }
 
-function recommend(involucramiento, presupuesto, tiempo){
+function recommend(d){
   const desiredMap = {a:"gestionado", b:"guiado", c:"guiado", d:"none"};
-  let level = desiredMap[involucramiento];
+  const wanted = desiredMap[d.involucramiento];
+  let level = wanted;
+  let blockedByBudget = false;
 
-  if (level === "gestionado" && presupuesto !== "d"){
-    level = (presupuesto === "c") ? "guiado" : "none";
+  // Quiere aportar lo suyo pero ya no da abasto, o contesta tarde: Gestionado contesta por él
+  if (d.involucramiento === "b" && d.presupuesto === "d" && (d.saturado || d.mainCause === "lenta")) level = "gestionado";
+
+  if (level === "gestionado" && d.presupuesto !== "d"){
+    level = (d.presupuesto === "c") ? "guiado" : "none";
+    if (level === "none") blockedByBudget = true;
   }
-  if (level === "guiado" && !(presupuesto === "c" || presupuesto === "d")){
+  if (level === "guiado" && !(d.presupuesto === "c" || d.presupuesto === "d")){
     level = "none";
+    blockedByBudget = true;
+  }
+
+  const gestionadoBody = d.volumen === "a"
+    ? "Hoy casi no te escriben, así que lo primero es que más gente correcta te encuentre. Con Gestionado, Merkha se encarga de tus publicaciones para atraerla y, cuando empiecen a llegar mensajes, también los contesta por ti."
+    : d.saturado
+      ? "Ya te escriben más personas de las que alcanzas a atender, y cada mensaje sin contestar es una venta que se va. Con Gestionado, Merkha publica, contesta los mensajes y te avisa cuando alguien ya quiere comprar."
+      : "Dijiste que no quieres meterte en el día a día. Con Gestionado, Merkha publica, contesta los mensajes y te avisa cuando alguien ya quiere comprar.";
+
+  let guiadoBody = "Quieres seguir poniendo tu cara y tu voz, pero sin cargar con pensar qué publicar. En Guiado tú grabas y contestas, y Merkha organiza, escribe los guiones y te dice exactamente qué publicar cada semana.";
+  if (wanted === "gestionado"){
+    guiadoBody = "Para soltarlo todo hoy no alcanza, pero tampoco tienes que cargar con todo. Guiado es el paso intermedio: tú grabas y contestas, y Merkha organiza, escribe los guiones y te dice exactamente qué publicar cada semana.";
+  } else if (d.involucramiento === "c"){
+    guiadoBody = "Quieres aprender a hacerlo tú, con alguien que te diga qué y cómo. En Guiado tú grabas y contestas, y Merkha organiza, escribe los guiones y te dice exactamente qué publicar cada semana.";
+  }
+  if (d.mainCause === "lenta"){
+    guiadoBody += " Como tu punto débil es contestar a tiempo, arriba tienes el mensaje automático para resolverlo desde hoy.";
+  }
+
+  let noneBody = "Con lo que tienes hoy, esto lo puedes resolver tú. Empieza con el mensaje de arriba y las 3 acciones para que te dejen menos en visto.";
+  if (blockedByBudget){
+    noneBody = "Con el presupuesto que tienes hoy, delegar te apretaría más de lo que te ayuda. El mensaje y las 3 acciones de arriba atacan directo la razón por la que te dejan en visto, y las puedes hacer tú desde esta semana.";
+  } else if (d.saturado || d.tiempo === "a"){
+    noneBody = "Prefieres hacerlo tú, pero ya se te están quedando mensajes o casi no tienes tiempo para esto. Empieza con el mensaje y las 3 acciones de arriba. Si en unas semanas sigues sin dar abasto, ese es el momento de delegar.";
   }
 
   const content = {
     gestionado: {
-      levelLabel:"Recomendación · Gestionado",
-      title:"Te conviene que Merkha maneje esto por ti",
-      body:"Dijiste que no quieres meterte en el día a día. Con Gestionado, Merkha publica, responde mensajes y te entrega los leads listos para cerrar.",
-      price:"Desde $15,000 MXN/mes · ajusta según tu diagnóstico real."
+      levelLabel:"¿Es momento de delegar? Sí · Gestionado",
+      title:"Sí, ya es momento de delegar tus redes",
+      body:gestionadoBody,
+      price:"Desde $15,000 MXN al mes. El precio final lo vemos en una llamada corta."
     },
     guiado: {
-      levelLabel:"Recomendación · Guiado",
-      title:"Guiado es tu mejor punto de partida",
-      body:"Quieres seguir involucrado, pero con estructura y guía real detrás. En Guiado tú grabas y respondes, y Merkha organiza, guioniza y te dice exactamente qué publicar cada semana.",
-      price:"Desde $10,500 MXN/mes · ajusta según tu diagnóstico real."
+      levelLabel:"¿Es momento de delegar? Sí, una parte · Guiado",
+      title:"Sí, es momento de delegar la parte de organizar",
+      body:guiadoBody,
+      price:"Desde $10,500 MXN al mes. El precio final lo vemos en una llamada corta."
     },
     none: {
-      levelLabel:"Recomendación",
-      title:"Por ahora no necesitas un Community Manager",
-      body:tiempo === "a"
-        ? "Dijiste que prefieres hacerlo tú, aunque también marcaste que casi no tienes tiempo real para esto. Aquí van tus recomendaciones de todas formas. Si en unas semanas el tiempo sigue sin aparecer, Guiado te da estructura sin quitarte el control."
-        : "Con lo que cuentas hoy, esto lo puedes resolver tú mismo. Aquí van 3 acciones concretas para tu cuello de botella.",
+      levelLabel:"¿Es momento de delegar? Todavía no",
+      title:"Todavía no es momento de delegar",
+      body:noneBody,
       price:""
     }
   };
@@ -986,19 +1185,15 @@ function recommend(involucramiento, presupuesto, tiempo){
 
 function openContactForm(mode){
   contactMode = mode;
+  // Si ya dejó nombre en el paso anterior, se va directo a WhatsApp sin segundo formulario
+  if (gateData.name){
+    sendWhatsApp();
+    return;
+  }
   document.getElementById("ctaRow").hidden = true;
   document.getElementById("contactForm").hidden = false;
-
   document.getElementById("fName").value = gateData.name || "";
   document.getElementById("fBiz").value = gateData.biz || "";
-  document.getElementById("fContact").value = gateData.whatsapp || "";
-
-  document.getElementById("sendWaBtn").textContent = mode === "ya"
-    ? "Enviar por WhatsApp →"
-    : "Mandarme mi diagnóstico por WhatsApp →";
-
-  const isPlaceholder = MERKHA_WHATSAPP_NUMBER.indexOf("X") !== -1;
-  document.getElementById("waNote").hidden = !isPlaceholder;
 }
 
 function declineContact(){
@@ -1007,27 +1202,29 @@ function declineContact(){
 }
 
 function sendWhatsApp(){
-  const name = document.getElementById("fName").value.trim() || "(sin nombre)";
-  const biz = document.getElementById("fBiz").value.trim() || "(sin negocio)";
-  const contact = document.getElementById("fContact").value.trim() || "(sin dato de contacto)";
+  const fromForm = !document.getElementById("contactForm").hidden;
+  const name = (fromForm ? document.getElementById("fName").value.trim() : gateData.name) || "";
+  const biz = (fromForm ? document.getElementById("fBiz").value.trim() : gateData.biz) || "";
   const r = window._lastResult;
-  const stageLabel = STAGES[r.bottleneck].label;
 
-  const opening = contactMode === "ya"
-    ? "Hola, hice la Radiografía de Negocio y quiero resolver esto ya. Contáctenme."
-    : "Hola, hice la Radiografía de Negocio. Todavía no busco que me contacten, quería mi diagnóstico por escrito para pensarlo.";
+  let opening;
+  if (contactMode === "luego"){
+    opening = "Hola, hice la Radiografía de Negocio. Les mando mi diagnóstico para platicarlo más adelante.";
+  } else if (r.rec.level === "none"){
+    opening = "Hola, hice la Radiografía de Negocio. ¿Me ayudan a revisar mi caso?";
+  } else {
+    opening = "Hola, hice la Radiografía de Negocio y quiero resolver esto. ¿Me pueden escribir?";
+  }
 
-  const lines = [
-    opening,
-    "",
-    "Nombre: " + name,
-    "Negocio: " + biz,
-    "Contacto: " + contact,
-    "",
-    "Cuello de botella detectado: " + stageLabel,
-    "Puntaje por etapa: Conexión " + r.stageScores.conexion + "/3, Educación " + r.stageScores.educacion + "/3, Conversión " + r.stageScores.conversion + "/3, Transformación " + r.stageScores.transformacion + "/3",
-    "Recomendación: " + r.rec.title
-  ];
+  const lines = [opening, ""];
+  if (name) lines.push("Soy " + name + (biz ? ", de " + biz : "") + ".");
+  else if (biz) lines.push("Mi negocio: " + biz + ".");
+  lines.push(
+    "Me dejan más en visto: " + MOMENTS[r.momento] + ".",
+    "Causa que salió: " + (r.allGood ? "mis mensajes van bien, me falta que me conozca más gente" : CAUSES[r.mainCause].label.toLowerCase()) + ".",
+    "Me escriben: " + VOLUMEN_TXT[r.volumen].toLowerCase() + ".",
+    "Recomendación: " + r.rec.title + "."
+  );
   const text = encodeURIComponent(lines.join("\n"));
   const url = "https://wa.me/" + MERKHA_WHATSAPP_NUMBER.replace(/\D/g,"") + "?text=" + text;
   const win = window.open(url, "_blank");
@@ -1045,8 +1242,10 @@ function sendWhatsApp(){
     return _start.apply(this, arguments);
   };
   window.revealResults = function(usedGateData){
-    fbq("trackCustom", "DiagnosticoCompletado", {con_datos: !!usedGateData});
-    if (usedGateData) fbq("track", "Lead", {content_name: "Radiografia de Negocio"});
+    var _r = window._lastResult || {};
+    var _conWa = !!usedGateData && (document.getElementById("gWhatsapp").value.replace(/\D/g, "").length >= 10);
+    fbq("trackCustom", "DiagnosticoCompletado", {con_datos: _conWa, momento_visto: _r.momento, causa_visto: _r.mainCause, recomendacion: _r.rec ? _r.rec.level : ""});
+    if (_conWa) fbq("track", "Lead", {content_name: "Radiografia de Negocio"});
     return _reveal.apply(this, arguments);
   };
   window.sendWhatsApp = function(){
